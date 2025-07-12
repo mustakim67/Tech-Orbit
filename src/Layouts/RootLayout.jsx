@@ -1,14 +1,14 @@
 import React from 'react';
 import { Outlet } from 'react-router';
 import Navbar from '../Pages/SharedComponents/Navbar/Navbar';
+import Footer from '../Pages/SharedComponents/Footer/Footer';
 
 const RootLayout = () => {
     return (
         <>
             <Navbar></Navbar>
-            <div className='px-[10%]'>
-                <Outlet></Outlet>
-            </div>
+            <Outlet></Outlet>
+            <Footer></Footer>
         </>
 
     );

@@ -44,7 +44,7 @@ const Navbar = () => {
     </>
     return (
         <div>
-            <div className="navbar bg-white shadow-md border-b border-b-gray-300 px-[5%] md:px-[10%] py-5 sticky top-0 z-50">
+            <div className="navbar bg-white shadow-md border-b border-b-gray-300 px-[5%] md:px-[10%] py-3 sticky top-0 z-50">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -57,7 +57,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className='flex items-center'>
-                        <img className='max-w-md h-15' src={logo} alt="" />
+                        <img className='max-h-[50%] md:max-w-md h-15' src={logo} alt="" />
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -69,7 +69,7 @@ const Navbar = () => {
                     <div className={`${user ? "hidden" : ""}`}>
                         <Link to={user ? " " : '/login'}>
                             <button
-                                className="bg-blue-800 text-white btn mr-3"
+                                className="bg-[#1E3A8A] text-white btn mr-3"
                             >
                                 {user ? " " : 'Sign In'}
                             </button>
