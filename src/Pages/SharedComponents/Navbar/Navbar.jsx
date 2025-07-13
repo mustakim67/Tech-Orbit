@@ -9,10 +9,11 @@ import useAuth from '../../../Hooks/useAuth';
 import { auth } from '../../../Firebase/firebase.init';
 
 const Navbar = () => {
-    const { user, signOutUser } =useAuth() ;
+    const { user, logOut } =useAuth() ;
+    console.log(user)
     const navigate = useNavigate()
     const handleSignOut = () => {
-        signOutUser(auth)
+        logOut(auth)
             .then(() => {
                 Swal.fire({
                     position: "top-end",
@@ -78,15 +79,13 @@ const Navbar = () => {
 
                     <div className={`${user ? " " : "hidden"}`}>
                         <div className="dropdown dropdown-hover">
-                            <div tabIndex={0} role="button" className="w-12 md:w-18 rounded-full py-2 mr-4">
+                            <div tabIndex={0} role="button" className="w-12 md:w-18 rounded-full mr-4">
                                 <img src={user?.photoURL} alt="User Image" className="rounded-full w-12 h-12 md:w-18 md:h-18 object-cover" />
                             </div>
                             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm -translate-x-20">
-                                <li><a className='mx-auto'>{user?.displayName || "User Name"}</a></li>
+                                <a className='mx-auto'>{user?.displayName || "User Name"}</a>
                                 <li><NavLink className={'mx-auto'}>Dashboard</NavLink></li>
-                                <li><button onClick={() => {
-                                    handleSignOut();
-                                }} className='btn btn-sm mt-1 rounded-full'>Sign Out <LuLogOut size={15}/></button></li>
+                                <li><button onClick={handleSignOut} className='btn btn-sm mt-1 rounded-full'>Sign Out <LuLogOut size={15}/></button></li>
                             </ul>
                         </div>
                     </div>

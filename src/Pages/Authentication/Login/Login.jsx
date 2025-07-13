@@ -6,6 +6,7 @@ import { FcGoogle } from 'react-icons/fc';
 import useAuth from '../../../Hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const { GoogleSignIn, signIn } = useAuth();
@@ -21,11 +22,21 @@ const Login = () => {
     const onSubmit = data => {
         signIn(data.email, data.password)
             .then(res => {
-                console.log("Sign-in success:", res);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sign In Successful!',
+                    text: 'Welcome back!',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
                 navigate(from);
             })
             .catch(error => {
-                console.error("Sign-in failed:", error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Sign In Failed',
+                    text: 'Invalid email or password.',
+                });
             });
     };
 
@@ -38,16 +49,26 @@ const Login = () => {
                 //update user info in the database
                 const userInfo = {
                     email: user.email,
-                    role: 'user', 
+                    role: 'user',
                     created_at: new Date(),
                     last_log_in: new Date()
                 }
                 const result = await axiosInstance.post('/users', userInfo);
-                console.log('user Update info:', result.data)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sign In Successful!',
+                    text: 'Welcome back!',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
                 navigate(from);
             })
             .catch(error => {
-                console.error(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Sign In Failed',
+                    text: 'Invalid email or password.',
+                });
             })
     }
 
