@@ -4,6 +4,7 @@ import { FaHome, FaBoxOpen, FaPlusCircle, FaUserCircle, FaUserEdit, FaUsers, FaH
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FaMotorcycle } from "react-icons/fa6";
 import logo from '../assets/logoIcon.png';
+import { ToastContainer } from 'react-toastify';
 const DashBoardLayout = () => {
 
     return (
@@ -28,6 +29,7 @@ const DashBoardLayout = () => {
                 <div className="p-6">
                     <Outlet />
                 </div>
+                <ToastContainer></ToastContainer>
             </div>
 
             {/* Sidebar */}

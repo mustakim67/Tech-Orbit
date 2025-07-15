@@ -8,6 +8,8 @@ import Register from '../../Pages/Authentication/Register/Register';
 import PrivateRoute from '../PrivateRoutes/PrivateRoute';
 import DashBoardLayout from '../../Layouts/DashBoardLayout';
 import MyProfile from '../../Pages/DashBoard/MyProfile/MyProfile';
+import AddProduct from '../../Pages/DashBoard/AddProducts/AddProduct';
+import MyProducts from '../../Pages/DashBoard/MyProducts/MyProducts';
 
 export const router = createBrowserRouter([
     {
@@ -39,6 +41,14 @@ export const router = createBrowserRouter([
         {
           path:'my-profile',
           element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>
+        },
+        {
+          path:'add-product',
+          element:<PrivateRoute><AddProduct></AddProduct></PrivateRoute>
+        },
+        {
+          path:'my-products',
+          element:<PrivateRoute><MyProducts></MyProducts></PrivateRoute>
         }
       ]
     }
