@@ -10,6 +10,7 @@ import DashBoardLayout from '../../Layouts/DashBoardLayout';
 import MyProfile from '../../Pages/DashBoard/MyProfile/MyProfile';
 import AddProduct from '../../Pages/DashBoard/AddProducts/AddProduct';
 import MyProducts from '../../Pages/DashBoard/MyProducts/MyProducts';
+import UpdateProduct from '../../Pages/DashBoard/UpdateProduct/UpdateProduct';
 
 export const router = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
         {
           path:'my-products',
           element:<PrivateRoute><MyProducts></MyProducts></PrivateRoute>
+        },
+        {
+          path:'update-product/:id',
+          element:<PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>
         }
       ]
     }
