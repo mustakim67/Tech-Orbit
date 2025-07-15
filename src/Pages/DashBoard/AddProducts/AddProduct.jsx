@@ -134,9 +134,9 @@ const AddProduct = () => {
             classNames={{
               root: 'flex flex-col gap-2',
               tagInput: 'w-full',
-              tagInputField: 'input input-bordered w-full',
+              tagInputField: 'input input-bordered w-full mb-2',
               tags: 'flex flex-wrap gap-2 mt-2',
-              tag: 'bg-blue-100 text-blue-800 px-3 py-1 rounded-full',
+              tag: 'bg-blue-100 text-blue-800 px-3 mx-2 py-1 rounded-full',
             }}
           />
         </div>
