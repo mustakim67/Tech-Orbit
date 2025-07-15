@@ -1,10 +1,15 @@
 import React from 'react';
+import logo from '../../../assets/logoIconw.png'
 
 const Footer = () => {
     return (
         <footer className="footer footer-horizontal footer-center bg-[#1E3A8A] text-primary-content px-[5%] md:px-[10%] py-20 ">
             <aside>
-                <h1 className='font-bold text-xl'>TECH ORBIT LTD.</h1>
+                <div className="flex items-center gap-3 px-2">
+                    <img src={logo} alt="TechOrbit" className="w-10 h-10" />
+                    <span className="text-xl font-bold">TECHORBIT</span>
+                </div>
+
                 <p className="font-bold">
                     Providing reliable tech since 1992
                 </p>

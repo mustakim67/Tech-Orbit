@@ -9,18 +9,18 @@ import useAuth from '../../../Hooks/useAuth';
 import { auth } from '../../../Firebase/firebase.init';
 
 const Navbar = () => {
-    const { user, logOut } =useAuth() ;
+    const { user, logOut } = useAuth();
     console.log(user)
     const navigate = useNavigate()
     const handleSignOut = () => {
         logOut(auth)
             .then(() => {
                 Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Logout Successful !",
-                    showConfirmButton: false,
-                    timer: 1500
+                    icon: 'success',
+                    title: 'Sign Out Successfully !',
+                    text: 'Thank You!',
+                    timer: 2000,
+                    showConfirmButton: false
                 });
                 navigate('/');
             })
@@ -34,12 +34,9 @@ const Navbar = () => {
             });
     }
 
-      const navItems = <>
+    const navItems = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
-        {
-            user &&
-            <li><NavLink to={'/products'}>Products</NavLink></li>
-        }
+        <li><NavLink to={'/products'}>Products</NavLink></li>
         <li><NavLink to={'/about'}>About</NavLink></li>
 
     </>
@@ -54,7 +51,7 @@ const Navbar = () => {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                           {navItems}
+                            {navItems}
                         </ul>
                     </div>
                     <div className='flex items-center'>
@@ -63,7 +60,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 lg:flex lg:items-center lg:text-lg font-500 lg:gap-5">
-                       {navItems}
+                        {navItems}
                     </ul>
                 </div>
                 <div className="navbar-end">
@@ -84,8 +81,8 @@ const Navbar = () => {
                             </div>
                             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm -translate-x-20">
                                 <a className='mx-auto'>{user?.displayName || "User Name"}</a>
-                                <li><NavLink className={'mx-auto'}>Dashboard</NavLink></li>
-                                <li><button onClick={handleSignOut} className='btn btn-sm mt-1 rounded-full'>Sign Out <LuLogOut size={15}/></button></li>
+                                <li><NavLink to={'dashboard'} className={'mx-auto'}>Dashboard</NavLink></li>
+                                <li><button onClick={handleSignOut} className='btn btn-sm mt-1 rounded-full'>Sign Out <LuLogOut size={15} /></button></li>
                             </ul>
                         </div>
                     </div>

@@ -5,6 +5,9 @@ import RootLayout from '../../Layouts/RootLayout';
 import Products from '../../Pages/Products/Products';
 import Login from '../../Pages/Authentication/Login/Login';
 import Register from '../../Pages/Authentication/Register/Register';
+import PrivateRoute from '../PrivateRoutes/PrivateRoute';
+import DashBoardLayout from '../../Layouts/DashBoardLayout';
+import MyProfile from '../../Pages/DashBoard/MyProfile/MyProfile';
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +29,16 @@ export const router = createBrowserRouter([
         {
           path:'/register',
           Component: Register
+        }
+      ]
+    },
+    {
+      path:'/dashboard',
+      element:<PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute> ,
+      children:[
+        {
+          path:'my-profile',
+          element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>
         }
       ]
     }

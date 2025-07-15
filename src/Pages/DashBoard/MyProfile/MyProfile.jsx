@@ -1,0 +1,100 @@
+import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import useAuth from '../../../Hooks/useAuth';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import CheckoutForm from '../Payment/CheckOutForm';
+import { MdVerified } from "react-icons/md";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+
+const MyProfile = () => {
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
+    const [showModal, setShowModal] = useState(false);
+
+    const { data: membershipStatus = {}, refetch, isLoading } = useQuery({
+        queryKey: ['membershipStatus', user?.email],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users/verified/${user.email}`);
+            return res.data;
+        },
+        enabled: !!user?.email,
+        staleTime: Infinity,
+    });
+
+    const handleSubscribeClick = () => setShowModal(true);
+    const handleCloseModal = () => setShowModal(false);
+
+    if (isLoading)
+        return (
+            <div className="text-center py-10 font-medium text-blue-600">
+                Loading Profile...
+            </div>
+        );
+
+    return (
+        <div className="max-w-2xl mx-auto mt-10 bg-white shadow-xl rounded-2xl p-6">
+            {/* Profile Section */}
+            <div className="flex flex-col items-center text-center space-y-4">
+                <img
+                    src={user?.photoURL || 'https://i.ibb.co/LvFTrbJ/user.png'}
+                    alt="User Profile"
+                    className="w-36 h-36 rounded-full border-4 border-indigo-500 shadow-md object-cover"
+                />
+                <div>
+                    <h3 className="text-2xl font-semibold text-gray-800 flex items-center justify-center gap-2">
+                        {user?.displayName}
+                        {membershipStatus?.isSubscribed && (
+                            <span className="inline-flex items-center gap-1 text-blue-500 text-xs font-medium px-1">
+                                <MdVerified size={18} />
+                            </span>
+                        )}
+                    </h3>
+                    <p className="text-gray-600">{user?.email}</p>
+
+                    {membershipStatus?.isSubscribed === false ? (
+                        <button
+                            onClick={handleSubscribeClick}
+                            className="btn btn-primary mt-4 w-full max-w-[200px]"
+                        >
+                            Subscribe for ৳{membershipStatus?.price || 199}
+                        </button>
+                    ) : null}
+                </div>
+            </div>
+
+            {/* Stripe Payment Modal */}
+            <dialog className={`modal ${showModal ? 'modal-open' : ''}`}>
+                <div className="modal-box max-w-md bg-white relative">
+                    <button
+                        className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl"
+                        onClick={handleCloseModal}
+                    >
+                        ✕
+                    </button>
+                    <h3 className="text-lg font-semibold text-indigo-700 mb-4">
+                        Complete Your Membership
+                    </h3>
+
+                    <Elements stripe={stripePromise}>
+                        <CheckoutForm
+                            price={membershipStatus?.price || 199}
+                            onSuccess={async () => {
+                                await axiosSecure.post('/users/verified', {
+                                    email: user.email,
+                                    verifiedAt: new Date(),
+                                });
+                                handleCloseModal();
+                                refetch();
+                            }}
+                        />
+                    </Elements>
+                </div>
+            </dialog>
+        </div>
+    );
+};
+
+export default MyProfile;
