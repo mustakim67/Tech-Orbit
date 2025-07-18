@@ -55,7 +55,7 @@ const MyProducts = () => {
     return (
         <div className="p-6">
             <h2 className="text-2xl font-bold mb-6 ">My Products</h2>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto shadow rounded-lg">
                 <table className="table table-zebra w-full rounded-lg overflow-hidden">
                     <thead className="bg-base-200">
                         <tr>

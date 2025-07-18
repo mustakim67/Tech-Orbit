@@ -76,7 +76,7 @@ const ProductReview = () => {
         <div className="p-6">
             <h2 className="text-2xl font-bold mb-6 text-center text-indigo-800">Product Review Queue</h2>
 
-            <div className="overflow-x-auto rounded-lg shadow border">
+            <div className="overflow-x-auto rounded-lg shadow">
                 <table className="table w-full">
                     <thead className="bg-base-200 text-gray-700">
                         <tr>
