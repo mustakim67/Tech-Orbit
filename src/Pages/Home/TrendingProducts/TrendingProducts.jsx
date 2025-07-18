@@ -1,42 +1,42 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaThumbsUp } from "react-icons/fa";
 
-const FeaturedProducts = () => {
+const TrendingProducts = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const navigate = useNavigate();
 
-    const { data: featured = [], refetch } = useQuery({
-        queryKey: ["featured-products"],
+    const { data: products = [], refetch } = useQuery({
+        queryKey: ["trending-products"],
         queryFn: async () => {
-            const res = await axiosSecure.get("/products/featured");
+            const res = await axiosSecure.get("/products/trending");
             return res.data;
         },
     });
 
-    const mutation = useMutation({
-        mutationFn: (id) => axiosSecure.patch(`/products/upvote/${id}`, { email: user.email }),
-        onSuccess: () => refetch(),
-        onError: (err) => {
-            Swal.fire("Oops", err.response?.data?.error || "Voting failed", "error");
-        }
-    });
-
-    const handleUpvote = (product) => {
+    const queryClient = useQueryClient();
+    const handleUpvote = async (product) => {
         if (!user) return navigate("/login");
-        mutation.mutate(product._id);
+
+        try {
+            await axiosSecure.patch(`/products/upvote/${product._id}`, { email: user.email });
+
+            queryClient.invalidateQueries(["trending-products"]);
+            queryClient.invalidateQueries(["featured-products"]);
+        } catch (err) {
+            Swal.fire("Oops", err.response?.data?.error || "Vote failed", "error");
+        }
     };
 
     return (
-        <div className="py-5 md:py-10 mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10 text-blue-900 font-mono">Featured Products</h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {featured.map(product => (
+        <div className="py-10 mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-8 text-blue-900 font-mono">Trending Products</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {products.map(product => (
                     <div key={product._id} className="bg-white rounded-2xl shadow p-4 flex flex-col justify-between h-full">
                         <div>
                             <img src={product.image} alt={product.name} className="h-40 w-full object-cover rounded-xl mb-3" />
@@ -63,8 +63,16 @@ const FeaturedProducts = () => {
                     </div>
                 ))}
             </div>
+
+            <div className="text-center mt-8">
+                <Link to="/products">
+                    <button className="px-5 py-2 bg-blue-800 text-white rounded hover:bg-blue-900">
+                        Show All Products
+                    </button>
+                </Link>
+            </div>
         </div>
     );
 };
 
-export default FeaturedProducts;
+export default TrendingProducts;
