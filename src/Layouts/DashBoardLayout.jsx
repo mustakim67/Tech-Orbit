@@ -5,6 +5,7 @@ import { MdAdminPanelSettings } from "react-icons/md";
 import { FaMotorcycle } from "react-icons/fa6";
 import logo from '../assets/logoIcon.png';
 import { ToastContainer } from 'react-toastify';
+import { MdReviews } from "react-icons/md";
 const DashBoardLayout = () => {
 
     return (
@@ -67,6 +68,12 @@ const DashBoardLayout = () => {
                         <NavLink to="/dashboard/my-products" className={({ isActive }) =>
                             isActive ? 'active-link' : 'default-link'}>
                             <FaBoxOpen /> My Products
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/product-review-queue" className={({ isActive }) =>
+                            isActive ? 'active-link' : 'default-link'}>
+                            <MdReviews /> Product Review Queue
                         </NavLink>
                     </li>
                     <li className="mt-4">

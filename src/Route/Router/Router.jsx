@@ -11,6 +11,7 @@ import MyProfile from '../../Pages/DashBoard/MyProfile/MyProfile';
 import AddProduct from '../../Pages/DashBoard/AddProducts/AddProduct';
 import MyProducts from '../../Pages/DashBoard/MyProducts/MyProducts';
 import UpdateProduct from '../../Pages/DashBoard/UpdateProduct/UpdateProduct';
+import ProductReview from '../../Pages/DashBoard/ProductReviewQueue/ProductReview';
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
         {
           path:'update-product/:id',
           element:<PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>
+        },
+        {
+          path:'product-review-queue',
+          element:<PrivateRoute><ProductReview></ProductReview></PrivateRoute>
         }
       ]
     }

@@ -163,7 +163,7 @@ const AddProduct = () => {
             <input value={user.email} readOnly className="input input-bordered w-full" />
           </div>
           <div>
-            <label className="text-sm text-gray-500">Owner Image</label>
+            <label className="text-sm text-gray-500">Owner Image URL</label>
             <input value={user.photoURL} readOnly className="input input-bordered w-full" />
           </div>
         </div>
