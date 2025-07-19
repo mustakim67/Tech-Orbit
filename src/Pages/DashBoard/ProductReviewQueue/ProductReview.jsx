@@ -113,7 +113,7 @@ const ProductReview = () => {
                                         </span>
                                     </td>
                                     <td className="flex flex-wrap justify-center gap-2">
-                                        <Link to={`/dashboard/product-details/${product._id}`}>
+                                        <Link to={`/product-details/${product._id}`}>
                                             <button className="bg-blue-900 text-white text-sm px-3 py-1 rounded hover:opacity-90">
                                                 View
                                             </button>
