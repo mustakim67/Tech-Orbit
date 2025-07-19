@@ -55,7 +55,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className='flex items-center'>
-                        <img className='max-h-[50%] md:max-w-md h-15' src={logo} alt="" />
+                        <img className='max-h-[50%] md:max-w-md h-12' src={logo} alt="" />
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">

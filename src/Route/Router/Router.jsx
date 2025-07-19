@@ -12,6 +12,7 @@ import AddProduct from '../../Pages/DashBoard/AddProducts/AddProduct';
 import MyProducts from '../../Pages/DashBoard/MyProducts/MyProducts';
 import UpdateProduct from '../../Pages/DashBoard/UpdateProduct/UpdateProduct';
 import ProductReview from '../../Pages/DashBoard/ProductReviewQueue/ProductReview';
+import ProductDetails from '../../Pages/ProductDetails/ProductDetails';
 
 export const router = createBrowserRouter([
     {
@@ -26,10 +27,15 @@ export const router = createBrowserRouter([
           path:'/products',
           Component:Products
         },
+       {
+          path:'/product-details/:id',
+          element:<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>
+        },
         {
           path:'/login',
           Component:Login
-        },
+        }
+        ,
         {
           path:'/register',
           Component: Register

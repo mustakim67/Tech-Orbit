@@ -80,7 +80,7 @@ const MyProducts = () => {
                                 <tr key={product._id}>
                                     <th>{index + 1}</th>
                                     <td>{product.name}</td>
-                                    <td>{product.votes || 0}</td>
+                                    <td>{product.votes.length || 0}</td>
                                     <td>
                                         <span
                                             className={`text-sm font-semibold px-2 py-1 rounded-full 
