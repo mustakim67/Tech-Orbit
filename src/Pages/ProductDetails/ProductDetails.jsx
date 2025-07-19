@@ -40,6 +40,7 @@ const ProductDetails = () => {
         if (!user) return Swal.fire("Login Required", "Please login to report", "info");
         await axiosSecure.post("/reports", {
             productId: product._id,
+            productName:product.name,
             reporterEmail: user.email,
             reportedAt: new Date(),
         });
@@ -168,7 +169,7 @@ const ProductDetails = () => {
                             className="input input-bordered w-full"
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary mt-4">
+                    <button type="submit" className="btn bg-blue-900 text-white mt-4">
                         Submit Review
                     </button>
                 </form>

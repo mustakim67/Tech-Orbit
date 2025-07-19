@@ -74,11 +74,11 @@ const ProductReview = () => {
 
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6 text-center text-indigo-800">Product Review Queue</h2>
+            <h2 className="text-2xl font-bold mb-6 text-blue-900">Product Review Queue</h2>
 
             <div className="overflow-x-auto rounded-lg shadow">
                 <table className="table w-full">
-                    <thead className="bg-base-200 text-gray-700">
+                    <thead className="bg-blue-100 text-blue-800">
                         <tr>
                             <th>#</th>
                             <th>Product Name</th>

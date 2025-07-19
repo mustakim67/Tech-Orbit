@@ -82,7 +82,7 @@ const AddProduct = () => {
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-8">
-      <h2 className="text-2xl font-bold mb-6 text-center text-indigo-600">Add New Product</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-blue-900">Add New Product</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Product Name */}
@@ -169,7 +169,7 @@ const AddProduct = () => {
         </div>
 
         <div className="pt-4">
-          <button type="submit" className="btn btn-primary w-full" disabled={uploading}>
+          <button type="submit" className="btn bg-blue-900 text-white w-full" disabled={uploading}>
             {uploading ? 'Uploading...' : 'Submit Product'}
           </button>
         </div>

@@ -6,6 +6,7 @@ import { FaMotorcycle } from "react-icons/fa6";
 import logo from '../assets/logoIcon.png';
 import { ToastContainer } from 'react-toastify';
 import { MdReviews } from "react-icons/md";
+import { VscReport } from "react-icons/vsc";
 const DashBoardLayout = () => {
 
     return (
@@ -74,6 +75,12 @@ const DashBoardLayout = () => {
                         <NavLink to="/dashboard/product-review-queue" className={({ isActive }) =>
                             isActive ? 'active-link' : 'default-link'}>
                             <MdReviews /> Product Review Queue
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/reported-content" className={({ isActive }) =>
+                            isActive ? 'active-link' : 'default-link'}>
+                            <VscReport /> Reported Contents
                         </NavLink>
                     </li>
                     <li className="mt-4">
