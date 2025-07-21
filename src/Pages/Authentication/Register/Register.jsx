@@ -27,14 +27,18 @@ const Register = () => {
                 const photoURL = res.data.data.url;
 
                 createUser(data.email, data.password)
-                    .then(async res => {
-                        const userProfile = {
+                    .then(async (userCredential) => {
+                        const user = userCredential.user;
+
+                        // Update Firebase user profile
+                        await updateUserProfile({
                             displayName: data.name,
                             photoURL
-                        };
-                        console.log(res)
+                        });
 
+                        // Save user info in your DB
                         const userInfo = {
+                            name: data.name,
                             email: data.email,
                             role: 'user',
                             created_at: new Date(),
@@ -43,16 +47,14 @@ const Register = () => {
 
                         await axiosInstance.post('/users', userInfo);
 
-                        updateUserProfile(userProfile).then(() => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Sign Up Successful!',
-                                text: 'Welcome!',
-                                timer: 2000,
-                                showConfirmButton: false
-                            });
-                            navigate(from);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sign Up Successful!',
+                            text: 'Welcome!',
+                            timer: 2000,
+                            showConfirmButton: false
                         });
+                        navigate(from);
                     })
                     .catch(() => {
                         Swal.fire({
@@ -60,10 +62,10 @@ const Register = () => {
                             title: 'Sign Up Failed',
                             text: 'Email already in use',
                         });
-                    })
-
+                    });
             });
     };
+
 
 
     return (

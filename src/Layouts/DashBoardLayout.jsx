@@ -7,6 +7,7 @@ import logo from '../assets/logoIcon.png';
 import { ToastContainer } from 'react-toastify';
 import { MdReviews } from "react-icons/md";
 import { VscReport } from "react-icons/vsc";
+import { MdManageAccounts } from "react-icons/md";
 const DashBoardLayout = () => {
 
     return (
@@ -81,6 +82,12 @@ const DashBoardLayout = () => {
                         <NavLink to="/dashboard/reported-content" className={({ isActive }) =>
                             isActive ? 'active-link' : 'default-link'}>
                             <VscReport /> Reported Contents
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/manage-users" className={({ isActive }) =>
+                            isActive ? 'active-link' : 'default-link'}>
+                            <MdManageAccounts /> Manage Users
                         </NavLink>
                     </li>
                     <li className="mt-4">
