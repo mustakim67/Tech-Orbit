@@ -47,7 +47,7 @@ const ManageUsers = () => {
     if (isLoading) return <div className="text-center py-10">Loading users...</div>;
 
     return (
-        <div className="mx-auto p-6">
+        <div className="mx-auto md:p-6">
             <h2 className="text-2xl font-bold mb-6 text-blue-800">Manage Users</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full bg-white rounded-xl shadow">

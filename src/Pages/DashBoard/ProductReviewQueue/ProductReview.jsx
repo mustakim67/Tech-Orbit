@@ -73,7 +73,7 @@ const ProductReview = () => {
     };
 
     return (
-        <div className="p-6">
+        <div className="md:p-6">
             <h2 className="text-2xl font-bold mb-6 text-blue-900">Product Review Queue</h2>
 
             <div className="overflow-x-auto rounded-lg shadow">

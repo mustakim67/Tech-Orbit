@@ -48,7 +48,7 @@ const ReportedContent = () => {
     if (isLoading) return <div className="text-center py-10">Loading...</div>;
 
     return (
-        <div className="mx-auto p-6">
+        <div className="mx-auto md:p-6">
             {reports.length === 0 ? (
                 <p className="text-gray-600 flex justify-center items-center mt-20">No reported products found.</p>
             ) : (

@@ -53,7 +53,7 @@ const MyProducts = () => {
         return <div className="text-center py-10 text-blue-500">Loading...</div>;
 
     return (
-        <div className="p-6">
+        <div className="md:p-6">
             <h2 className="text-2xl font-bold mb-6 ">My Products</h2>
             <div className="overflow-x-auto shadow rounded-lg">
                 <table className="table table-zebra w-full rounded-lg overflow-hidden">

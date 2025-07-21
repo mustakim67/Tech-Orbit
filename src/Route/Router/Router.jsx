@@ -15,11 +15,13 @@ import ProductReview from '../../Pages/DashBoard/ProductReviewQueue/ProductRevie
 import ProductDetails from '../../Pages/ProductDetails/ProductDetails';
 import ReportedContent from '../../Pages/DashBoard/ReportedContent/ReportedContent';
 import ManageUsers from '../../Pages/DashBoard/Admin/ManageUsers/ManageUsers';
+import Error from '../../Pages/ErrorPage/Error';
 
 export const router = createBrowserRouter([
     {
       path:'/',
       Component:RootLayout,
+      errorElement:<Error></Error>,
       children:[
         {
             index:true,
