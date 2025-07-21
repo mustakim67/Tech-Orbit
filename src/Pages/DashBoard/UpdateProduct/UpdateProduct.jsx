@@ -51,14 +51,25 @@ const UpdateProduct = () => {
 
   const onSubmit = async (data) => {
     try {
-      let imageUrl = existingData.image;
+      let imageUrl = existingData.image; 
+
       if (data.image[0]) {
+        const imageFile = data.image[0];
         const formData = new FormData();
-        formData.append('image', data.image[0]);
-        const res = await axiosSecure.post('/upload-image', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
+        formData.append('image', imageFile);
+
+        const res = await fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_UPLOAD_KEY}`, {
+          method: 'POST',
+          body: formData,
         });
-        imageUrl = res.data.url;
+
+        const imgData = await res.json();
+
+        if (imgData.success) {
+          imageUrl = imgData.data.url;
+        } else {
+          throw new Error("Image upload failed");
+        }
       }
 
       const updatedProduct = {
@@ -74,6 +85,7 @@ const UpdateProduct = () => {
       toast.success('Product updated successfully!');
       navigate('/dashboard/my-products');
     } catch (error) {
+      console.error(error);
       toast.error('Update failed.');
     }
   };
@@ -148,7 +160,7 @@ const UpdateProduct = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary w-full mt-4">Update Product</button>
+        <button type="submit" className="btn bg-blue-900 text-white w-full mt-4">Update Product</button>
       </form>
     </div>
   );
