@@ -16,6 +16,7 @@ import ProductDetails from '../../Pages/ProductDetails/ProductDetails';
 import ReportedContent from '../../Pages/DashBoard/ReportedContent/ReportedContent';
 import ManageUsers from '../../Pages/DashBoard/Admin/ManageUsers/ManageUsers';
 import Error from '../../Pages/ErrorPage/Error';
+import Forbidden from '../../Pages/Forbidden/Forbidden';
 
 export const router = createBrowserRouter([
     {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
         {
           path:'/register',
           Component: Register
+        },
+        {
+          path:'/forbidden',
+          Component: Forbidden
         }
       ]
     },
