@@ -17,6 +17,8 @@ import ReportedContent from '../../Pages/DashBoard/ReportedContent/ReportedConte
 import ManageUsers from '../../Pages/DashBoard/Admin/ManageUsers/ManageUsers';
 import Error from '../../Pages/ErrorPage/Error';
 import Forbidden from '../../Pages/Forbidden/Forbidden';
+import AdminRoutes from '../AdminRoutes/AdminRoutes';
+import ManageCoupon from '../../Pages/DashBoard/Admin/ManageCoupon/ManageCoupon';
 
 export const router = createBrowserRouter([
     {
@@ -81,7 +83,11 @@ export const router = createBrowserRouter([
         },
         {
           path:'manage-users',
-          element:<PrivateRoute><ManageUsers></ManageUsers></PrivateRoute>
+          element:<AdminRoutes><ManageUsers></ManageUsers></AdminRoutes>
+        },
+        {
+          path:'manage-coupon',
+          element:<AdminRoutes><ManageCoupon></ManageCoupon></AdminRoutes>
         }
       ]
     }
