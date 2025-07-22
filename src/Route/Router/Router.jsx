@@ -19,6 +19,7 @@ import Error from '../../Pages/ErrorPage/Error';
 import Forbidden from '../../Pages/Forbidden/Forbidden';
 import AdminRoutes from '../AdminRoutes/AdminRoutes';
 import ManageCoupon from '../../Pages/DashBoard/Admin/ManageCoupon/ManageCoupon';
+import ModeratorRoutes from '../ModeratorRoutes/ModeratorRoutes';
 
 export const router = createBrowserRouter([
     {
@@ -75,11 +76,11 @@ export const router = createBrowserRouter([
         },
         {
           path:'product-review-queue',
-          element:<PrivateRoute><ProductReview></ProductReview></PrivateRoute>
+          element:<ModeratorRoutes><ProductReview></ProductReview></ModeratorRoutes>
         },
         {
           path:'reported-content',
-          element:<PrivateRoute><ReportedContent></ReportedContent></PrivateRoute>
+          element:<ModeratorRoutes><ReportedContent></ReportedContent></ModeratorRoutes>
         },
         {
           path:'manage-users',
