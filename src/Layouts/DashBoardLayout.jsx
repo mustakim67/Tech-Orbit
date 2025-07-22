@@ -8,7 +8,11 @@ import { ToastContainer } from 'react-toastify';
 import { MdReviews } from "react-icons/md";
 import { VscReport } from "react-icons/vsc";
 import { MdManageAccounts } from "react-icons/md";
+import useUserRole from '../Hooks/useUserRole';
+import { RiCoupon2Fill } from "react-icons/ri";
 const DashBoardLayout = () => {
+
+    const { role, roleLoading } = useUserRole();
 
     return (
         <div className="drawer lg:drawer-open min-h-screen bg-gray-100 text-gray-800">
@@ -84,12 +88,24 @@ const DashBoardLayout = () => {
                             <VscReport /> Reported Contents
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/dashboard/manage-users" className={({ isActive }) =>
-                            isActive ? 'active-link' : 'default-link'}>
-                            <MdManageAccounts /> Manage Users
-                        </NavLink>
-                    </li>
+                    {/* //admin links */}
+                    {!roleLoading && role === 'admin' &&
+                        <>
+                            <li>
+                                <NavLink to="/dashboard/manage-users" className={({ isActive }) =>
+                                    isActive ? 'active-link' : 'default-link'}>
+                                    <MdManageAccounts /> Manage Users
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/manage-coupon" className={({ isActive }) =>
+                                    isActive ? 'active-link' : 'default-link'}>
+                                    <RiCoupon2Fill /> Manage Coupon
+                                </NavLink>
+                            </li>
+                        </>
+                    }
+
                     <li className="mt-4">
                         <NavLink to="/dashboard/update-profile" className={({ isActive }) =>
                             isActive ? 'active-link' : 'default-link'}>
