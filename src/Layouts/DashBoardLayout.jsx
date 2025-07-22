@@ -56,38 +56,45 @@ const DashBoardLayout = () => {
                         </NavLink>
                     </li>
 
-                    <li>
-                        <NavLink to="/dashboard/my-profile" className={({ isActive }) =>
-                            isActive ? 'active-link' : 'default-link'}>
-                            <FaUserCircle /> My Profile
-                        </NavLink>
-                    </li>
+                    {!roleLoading && role === 'user' &&
+                        <>
+                            <li>
+                                <NavLink to="/dashboard/my-profile" className={({ isActive }) =>
+                                    isActive ? 'active-link' : 'default-link'}>
+                                    <FaUserCircle /> My Profile
+                                </NavLink>
+                            </li>
 
-                    <li>
-                        <NavLink to="/dashboard/add-product" className={({ isActive }) =>
-                            isActive ? 'active-link' : 'default-link'}>
-                            <FaPlusCircle /> Add Product
-                        </NavLink>
-                    </li>
+                            <li>
+                                <NavLink to="/dashboard/add-product" className={({ isActive }) =>
+                                    isActive ? 'active-link' : 'default-link'}>
+                                    <FaPlusCircle /> Add Product
+                                </NavLink>
+                            </li>
 
-                    <li>
-                        <NavLink to="/dashboard/my-products" className={({ isActive }) =>
-                            isActive ? 'active-link' : 'default-link'}>
-                            <FaBoxOpen /> My Products
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dashboard/product-review-queue" className={({ isActive }) =>
-                            isActive ? 'active-link' : 'default-link'}>
-                            <MdReviews /> Product Review Queue
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dashboard/reported-content" className={({ isActive }) =>
-                            isActive ? 'active-link' : 'default-link'}>
-                            <VscReport /> Reported Contents
-                        </NavLink>
-                    </li>
+                            <li>
+                                <NavLink to="/dashboard/my-products" className={({ isActive }) =>
+                                    isActive ? 'active-link' : 'default-link'}>
+                                    <FaBoxOpen /> My Products
+                                </NavLink>
+                            </li>
+                        </>}
+                    {!roleLoading && role === 'moderator' &&
+                        <>
+                            <li>
+                                <NavLink to="/dashboard/product-review-queue" className={({ isActive }) =>
+                                    isActive ? 'active-link' : 'default-link'}>
+                                    <MdReviews /> Product Review Queue
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/reported-content" className={({ isActive }) =>
+                                    isActive ? 'active-link' : 'default-link'}>
+                                    <VscReport /> Reported Contents
+                                </NavLink>
+                            </li>
+                        </>}
+
                     {/* //admin links */}
                     {!roleLoading && role === 'admin' &&
                         <>
@@ -105,13 +112,6 @@ const DashBoardLayout = () => {
                             </li>
                         </>
                     }
-
-                    <li className="mt-4">
-                        <NavLink to="/dashboard/update-profile" className={({ isActive }) =>
-                            isActive ? 'active-link' : 'default-link'}>
-                            <FaUserEdit /> Update Profile
-                        </NavLink>
-                    </li>
                 </ul>
             </div>
         </div>
