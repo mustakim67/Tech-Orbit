@@ -101,7 +101,7 @@ const ProductReview = () => {
                             </tr>
                         ) : (
                             products.map((product, index) => (
-                                <tr key={product._id}>
+                                <tr key={product._id} className="hover:bg-base-100">
                                     <td>{index + 1}</td>
                                     <td className="py-3 font-medium">{product.name}</td>
                                     <td>

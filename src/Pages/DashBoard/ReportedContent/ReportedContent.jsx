@@ -54,8 +54,8 @@ const ReportedContent = () => {
             ) : (
                 <>
                     <h2 className="text-2xl font-bold mb-6 text-blue-900">Reported Contents</h2>
-                    <div className="overflow-x-auto">
-                        <table className="table table-zebra w-full bg-white rounded-lg shadow">
+                    <div className="overflow-x-auto rounded-lg">
+                        <table className="table table-zebra w-full shadow border border-gray-300">
                             <thead className="bg-blue-100 text-blue-800">
                                 <tr>
                                     <th>#</th>
@@ -66,7 +66,7 @@ const ReportedContent = () => {
                             </thead>
                             <tbody>
                                 {reports.map((report, idx) => (
-                                    <tr key={report._id}>
+                                    <tr key={report._id} className="hover:bg-base-100">
                                         <td>{idx + 1}</td>
                                         <td>{report.
                                             productName

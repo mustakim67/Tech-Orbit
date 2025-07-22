@@ -91,7 +91,7 @@ const ManageCoupon = () => {
                 <input type="date" {...register("expiry")} className="input input-bordered w-full" required />
                 <input {...register("description")} placeholder="Short Description" className="input input-bordered w-full col-span-2" required />
                 <input type="number" {...register("discount")} placeholder="Discount %" className="input input-bordered w-full" required />
-                <button type="submit" className="btn bg-blue-600 text-white hover:bg-blue-700 col-span-2">Add Coupon</button>
+                <button type="submit" className="btn bg-blue-900 text-white hover:bg-blue-700 col-span-2">Add Coupon</button>
             </form>
 
             {coupons.length === 0 ? (
@@ -99,23 +99,45 @@ const ManageCoupon = () => {
             ) : (
                 <>
                     <h3 className="text-2xl font-bold mb-6 text-blue-900 mt-10">Available Coupons</h3>
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {coupons.map((coupon) => (
-                            <div key={coupon._id} className="bg-base-100 shadow-lg rounded-lg p-5 border">
-                                <div className="mb-2 flex items-center justify-between">
-                                    <h4 className="text-lg font-bold">{coupon.code}</h4>
-                                    <span className="badge badge-accent text-sm">{coupon.discount}% OFF</span>
-                                </div>
-                                <p className="text-sm text-gray-600 mb-2">{coupon.description}</p>
-                                <p className="text-sm">
-                                    <span className="font-semibold">Expires:</span> {coupon.expiry}
-                                </p>
-                                <div className="mt-4 flex gap-2">
-                                    <button onClick={() => handleEdit(coupon)} className="btn btn-xs btn-info">Edit</button>
-                                    <button onClick={() => handleDelete(coupon._id)} className="btn btn-xs btn-error">Delete</button>
-                                </div>
-                            </div>
-                        ))}
+
+                    <div className="overflow-x-auto rounded-lg shadow">
+                        <table className="table w-full border border-base-300">
+                            <thead className="bg-blue-100 text-blue-800 text-sm">
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Description</th>
+                                    <th>Discount</th>
+                                    <th>Expiry</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {coupons.map((coupon) => (
+                                    <tr key={coupon._id} className="hover:bg-base-100">
+                                        <td className="font-semibold text-sm">{coupon.code}</td>
+                                        <td className="text-sm">{coupon.description}</td>
+                                        <td className="text-sm text-green-600 font-medium">{coupon.discount}%</td>
+                                        <td className="text-sm">{coupon.expiry}</td>
+                                        <td>
+                                            <div className="flex gap-2">
+                                                <button
+                                                    onClick={() => handleEdit(coupon)}
+                                                    className="btn btn-xs bg-blue-900 text-white hover:bg-blue-800"
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(coupon._id)}
+                                                    className="btn btn-xs btn-error"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </>
             )}
