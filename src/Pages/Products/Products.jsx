@@ -6,11 +6,13 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaThumbsUp } from "react-icons/fa";
 import { GrSearch } from "react-icons/gr";
+import useUserRole from "../../Hooks/useUserRole";
 
 const Products = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const navigate = useNavigate();
+    const { role } = useUserRole();
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchText, setSearchText] = useState("");
@@ -33,6 +35,10 @@ const Products = () => {
 
     const handleUpvote = async (product) => {
         if (!user) return navigate("/login");
+        if (role === 'admin' || role === 'moderator') {
+            Swal.fire("Oops", "Admin or Moderator can't vote a product", "error");
+            return;
+        }
 
         try {
             await axiosSecure.patch(`/products/upvote/${product._id}`, {

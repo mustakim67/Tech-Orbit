@@ -4,11 +4,13 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaThumbsUp } from "react-icons/fa";
+import useUserRole from "../../../Hooks/useUserRole";
 
 const TrendingProducts = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const navigate = useNavigate();
+    const { role } = useUserRole();
 
     const { data: products = [], refetch } = useQuery({
         queryKey: ["trending-products"],
@@ -21,6 +23,10 @@ const TrendingProducts = () => {
     const queryClient = useQueryClient();
     const handleUpvote = async (product) => {
         if (!user) return navigate("/login");
+        if (role === 'admin' || role === 'moderator') {
+            Swal.fire("Oops", "Admin or Moderator can't vote a product", "error");
+            return;
+        }
 
         try {
             await axiosSecure.patch(`/products/upvote/${product._id}`, { email: user.email });

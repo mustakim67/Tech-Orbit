@@ -4,11 +4,13 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaThumbsUp } from "react-icons/fa";
+import useUserRole from "../../../Hooks/useUserRole";
 
 const FeaturedProducts = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const navigate = useNavigate();
+    const { role } = useUserRole();
 
     const { data: featured = [], refetch } = useQuery({
         queryKey: ["featured-products"],
@@ -28,6 +30,10 @@ const FeaturedProducts = () => {
 
     const handleUpvote = (product) => {
         if (!user) return navigate("/login");
+        if (role === 'admin' || role === 'moderator') {
+            Swal.fire("Oops", "Admin or Moderator can't vote a product", "error");
+            return;
+        }
         mutation.mutate(product._id);
     };
 

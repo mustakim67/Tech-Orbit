@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useUserRole from "../../Hooks/useUserRole";
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -13,6 +14,8 @@ const ProductDetails = () => {
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
     const [rating, setRating] = useState(2);
+     const { role } = useUserRole();
+
 
     const { data: product = {} } = useQuery({
         queryKey: ["product", id],
@@ -32,6 +35,10 @@ const ProductDetails = () => {
 
     const handleUpvote = async () => {
         if (!user) return Swal.fire("Login Required", "Please login to vote", "info");
+        if (role === 'admin' || role === 'moderator') {
+            Swal.fire("Oops", "Admin or Moderator can't vote a product", "error");
+            return;
+        }
         await axiosSecure.patch(`/products/upvote/${product._id}`, { email: user.email });
         queryClient.invalidateQueries(["product", id]);
     };
@@ -40,7 +47,7 @@ const ProductDetails = () => {
         if (!user) return Swal.fire("Login Required", "Please login to report", "info");
         await axiosSecure.post("/reports", {
             productId: product._id,
-            productName:product.name,
+            productName: product.name,
             reporterEmail: user.email,
             reportedAt: new Date(),
         });
@@ -110,7 +117,7 @@ const ProductDetails = () => {
             <div>
                 <h3 className="text-xl font-semibold mb-4">Reviews</h3>
                 <div className="grid md:grid-cols-2 gap-4 rounded-lg">
-                    {reviews.length != 0?(reviews.map((review, i) => (
+                    {reviews.length != 0 ? (reviews.map((review, i) => (
                         <div key={i} className="bg-gray-100 p-4 rounded-xl shadow">
                             <div className="flex items-center gap-3 mb-2">
                                 <img src={review.reviewerImage} alt="User" className="w-10 h-10 rounded-full" />
@@ -124,7 +131,7 @@ const ProductDetails = () => {
                             <p className="mb-2 text-gray-700">{review.description}</p>
                             <p className="text-sm text-yellow-600">⭐ {review.rating} / 5</p>
                         </div>
-                    ))):(<h1 className=" text-gray-400">No one reviewed yet</h1>)
+                    ))) : (<h1 className=" text-gray-400">No one reviewed yet</h1>)
                     }
                 </div>
             </div>
