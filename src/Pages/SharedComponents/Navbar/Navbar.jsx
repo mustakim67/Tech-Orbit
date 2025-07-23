@@ -7,8 +7,10 @@ import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import useAuth from '../../../Hooks/useAuth';
 import { auth } from '../../../Firebase/firebase.init';
+import useUserRole from '../../../Hooks/useUserRole';
 
 const Navbar = () => {
+    const { role, roleLoading } = useUserRole();
     const { user, logOut } = useAuth();
     console.log(user)
     const navigate = useNavigate()
@@ -81,14 +83,29 @@ const Navbar = () => {
                             </div>
                             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm -translate-x-20">
                                 <a className='mx-auto'>{user?.displayName || "User Name"}</a>
-                                <li><NavLink to={'dashboard'} className={'mx-auto'}>Dashboard</NavLink></li>
+                                <li>
+                                    <NavLink
+                                        to={
+                                            !roleLoading && role === 'user'
+                                                ? 'dashboard/my-profile'
+                                                : !roleLoading && role === 'moderator'
+                                                    ? 'dashboard/product-review-queue'
+                                                    : !roleLoading && role === 'admin'
+                                                        ? 'dashboard/manage-users'
+                                                        : '/'
+                                        }
+                                        className={'mx-auto'}
+                                    >
+                                        Dashboard
+                                    </NavLink>
+                                </li>
                                 <li><button onClick={handleSignOut} className='btn btn-sm mt-1 rounded-full'>Sign Out <LuLogOut size={15} /></button></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

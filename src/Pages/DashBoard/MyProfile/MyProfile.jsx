@@ -47,7 +47,7 @@ const MyProfile = () => {
                     <h3 className="text-2xl font-semibold text-gray-800 flex items-center justify-center gap-2">
                         {user?.displayName}
                         {membershipStatus?.isSubscribed && (
-                            <span className="inline-flex items-center text-blue-500 text-xs font-medium px-1">
+                            <span className="inline-flex items-center text-[#DAA520] text-xs font-medium px-1">
                                 <MdWorkspacePremium size={30}/>
                             </span>
                         )}

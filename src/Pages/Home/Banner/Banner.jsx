@@ -4,6 +4,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import img1 from '../../../assets/Plain credit card-bro.png';
 import img2 from '../../../assets/Version control-pana.png';
 import img3 from '../../../assets/Chat bot-bro.png';
+import { Link } from 'react-router';
 
 const slides = [
   
@@ -52,7 +53,7 @@ const Banner = () => {
                                     {slide.desc}
                                 </p>
                                 <button className="btn bg-blue-800 text-white rounded-xl px-6 py-2 mb-2 text-sm md:text-base">
-                                    {slide.btn}
+                                   <Link to={'/products'}>{slide.btn}</Link> 
                                 </button>
                             </div>
                             <div className="md:w-1/2 flex justify-center">
