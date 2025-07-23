@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { WithContext as ReactTags } from 'react-tag-input';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
@@ -18,6 +19,10 @@ const AddProduct = () => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const [tags, setTags] = useState([]);
+  const [uploading, setUploading] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
+  const [hasPosted, setHasPosted] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -25,12 +30,44 @@ const AddProduct = () => {
     formState: { errors },
   } = useForm();
 
-  const [uploading, setUploading] = useState(false);
+  useEffect(() => {
+    if (user?.email) {
+      // Fetch user info 
+      axiosSecure.get(`/users/subscription?email=${user.email}`)
+        .then(res => {
+          const subscribed = res.data?.isSubscribed || false;
+          setIsVerified(subscribed);
+
+          if (!subscribed) {
+            axiosSecure.get(`/products/user/${user.email}`)
+              .then(res => {
+                setHasPosted(res.data?.length >= 1);
+              });
+          } else {
+            setHasPosted(false);
+          }
+        })
+        .catch(err => {
+          console.error('Error checking subscription status:', err);
+        });
+    }
+  }, [user?.email, axiosSecure]);
+
+
 
   const onSubmit = async (data) => {
     try {
+      if (!isVerified && hasPosted) {
+        return Swal.fire({
+          icon: 'warning',
+          title: 'Upgrade Required',
+          text: 'You’ve reached the limit for free users. Subscribe to add more products.',
+          confirmButtonText: 'OK',
+        });
+      }
+
       if (!data.image[0]) {
-        toast.error("Image file is required.");
+        toast.error('Image file is required.');
         return;
       }
 
@@ -67,11 +104,29 @@ const AddProduct = () => {
         createdAt: new Date(),
       };
 
-      await axiosSecure.post('/products', product);
-      toast.success('Product submitted for review!');
-      reset();
-      setTags([]);
-      navigate('/dashboard/my-products');
+      try {
+        await axiosSecure.post("/products", product);
+        reset();
+        setTags([]);
+        navigate("/dashboard/my-products");
+      } catch (error) {
+        if (error.response && error.response.status === 403) {
+          Swal.fire({
+            icon: 'info',
+            title: 'Upgrade Required',
+            text: 'You need to subscribe to add more than one product.',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          });
+        }
+      }
+      finally {
+        setUploading(false);
+      }
     } catch (err) {
       console.error(err);
       toast.error('Failed to submit product.');
@@ -152,7 +207,7 @@ const AddProduct = () => {
           />
         </div>
 
-        {/* Owner Info (readonly) */}
+        {/* Owner Info */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
           <div>
             <label className="text-sm text-gray-500">Owner Name</label>
@@ -168,6 +223,7 @@ const AddProduct = () => {
           </div>
         </div>
 
+        {/* Submit Button */}
         <div className="pt-4">
           <button type="submit" className="btn bg-blue-900 text-white w-full" disabled={uploading}>
             {uploading ? 'Uploading...' : 'Submit Product'}
