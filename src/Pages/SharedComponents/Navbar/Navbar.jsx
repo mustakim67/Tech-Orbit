@@ -91,7 +91,7 @@ const Navbar = () => {
                                                 : !roleLoading && role === 'moderator'
                                                     ? 'dashboard/product-review-queue'
                                                     : !roleLoading && role === 'admin'
-                                                        ? 'dashboard/manage-users'
+                                                        ? 'dashboard/admin-statistics'
                                                         : '/'
                                         }
                                         className={'mx-auto'}

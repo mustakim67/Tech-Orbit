@@ -20,6 +20,7 @@ import Forbidden from '../../Pages/Forbidden/Forbidden';
 import AdminRoutes from '../AdminRoutes/AdminRoutes';
 import ManageCoupon from '../../Pages/DashBoard/Admin/ManageCoupon/ManageCoupon';
 import ModeratorRoutes from '../ModeratorRoutes/ModeratorRoutes';
+import Statistics from '../../Pages/DashBoard/Admin/Statistics/Statistics';
 
 export const router = createBrowserRouter([
     {
@@ -89,6 +90,10 @@ export const router = createBrowserRouter([
         {
           path:'manage-coupon',
           element:<AdminRoutes><ManageCoupon></ManageCoupon></AdminRoutes>
+        },
+        {
+          path:'admin-statistics',
+          element:<AdminRoutes><Statistics></Statistics></AdminRoutes>
         }
       ]
     }

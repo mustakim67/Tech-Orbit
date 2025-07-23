@@ -10,6 +10,7 @@ import { VscReport } from "react-icons/vsc";
 import { MdManageAccounts } from "react-icons/md";
 import useUserRole from '../Hooks/useUserRole';
 import { RiCoupon2Fill } from "react-icons/ri";
+import { FcStatistics } from "react-icons/fc";
 const DashBoardLayout = () => {
 
     const { role, roleLoading } = useUserRole();
@@ -98,6 +99,12 @@ const DashBoardLayout = () => {
                     {/* //admin links */}
                     {!roleLoading && role === 'admin' &&
                         <>
+                            <li>
+                                <NavLink to="/dashboard/admin-statistics" className={({ isActive }) =>
+                                    isActive ? 'active-link' : 'default-link'}>
+                                    <FcStatistics /> Admin Statistics
+                                </NavLink>
+                            </li>
                             <li>
                                 <NavLink to="/dashboard/manage-users" className={({ isActive }) =>
                                     isActive ? 'active-link' : 'default-link'}>
