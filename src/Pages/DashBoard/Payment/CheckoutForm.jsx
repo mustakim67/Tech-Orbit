@@ -9,25 +9,54 @@ const CheckoutForm = ({ price, onSuccess }) => {
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
-    const [isProcessing, setIsProcessing] = useState(false);
 
+    const [isProcessing, setIsProcessing] = useState(false);
     const [clientSecret, setClientSecret] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
+    const [couponCode, setCouponCode] = useState('');
+    const [discountedPrice, setDiscountedPrice] = useState(price);
+    const [validCoupons, setValidCoupons] = useState([]);
 
-    // Create Payment Intent on mount
+    // Load valid coupons once
     useEffect(() => {
-        if (price > 0) {
-            axiosSecure
-                .post('/create-payment-intent', { price })
+        axiosSecure.get('/coupons/valid-coupons')
+            .then(res => {
+                setValidCoupons(res.data);
+            })
+            .catch(err => {
+                console.error('Failed to fetch coupons', err);
+            });
+    }, [axiosSecure]);
+
+    // Apply discount when couponCode changes
+    useEffect(() => {
+        const foundCoupon = validCoupons.find(c => c.code === couponCode.trim().toUpperCase());
+
+        if (foundCoupon) {
+            const discountAmount = price * (parseFloat(foundCoupon.discount) / 100);
+            const newPrice = parseFloat((price - discountAmount).toFixed(2));
+            setDiscountedPrice(newPrice);
+        } else {
+            setDiscountedPrice(price);
+        }
+    }, [couponCode, validCoupons, price]);
+
+    // Create PaymentIntent when price or coupon changes
+    useEffect(() => {
+        if (discountedPrice > 0) {
+            axiosSecure.post('/create-payment-intent', {
+                price: discountedPrice
+            })
                 .then(res => {
                     setClientSecret(res.data.clientSecret);
+                    setErrorMsg('');
                 })
                 .catch(err => {
-                    console.error('Stripe Init Error:', err.response?.data || err.message);
-                    setErrorMsg('Failed to initialize payment.');
+                    console.error('Stripe Init Error:', err);
+                    setErrorMsg(err.response?.data?.error || 'Failed to initialize payment.');
                 });
         }
-    }, [price, axiosSecure]);
+    }, [discountedPrice, axiosSecure]);
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -49,7 +78,6 @@ const CheckoutForm = ({ price, onSuccess }) => {
 
         if (methodError) {
             setErrorMsg(methodError.message);
-            console.error(methodError);
             setIsProcessing(false);
             return;
         }
@@ -66,7 +94,6 @@ const CheckoutForm = ({ price, onSuccess }) => {
 
         if (confirmError) {
             setErrorMsg(confirmError.message);
-            console.error(confirmError);
             setIsProcessing(false);
             return;
         }
@@ -87,26 +114,48 @@ const CheckoutForm = ({ price, onSuccess }) => {
 
                 onSuccess?.();
             } catch (err) {
-                console.error(err);
                 setErrorMsg('Verification failed after payment.');
             }
         }
 
         setIsProcessing(false);
-    }
+    };
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
-            <p className="text-gray-600 text-sm mb-1">Payable Amount</p>
-            <div className="text-lg font-semibold text-blue-800 mb-2">৳{price}</div>
+            <div>
+                <p className="text-gray-600 text-sm mb-1">Original Price</p>
+                <div className="text-lg font-semibold text-gray-700 line-through">
+                    ৳{price}
+                </div>
+            </div>
+
+            <div>
+                <p className="text-gray-600 text-sm mb-1">Discounted Price</p>
+                <div className="text-xl font-bold text-blue-900">
+                    ৳{discountedPrice}
+                </div>
+            </div>
+
+            <div>
+                <label className="text-sm font-medium text-gray-700">Coupon Code</label>
+                <input
+                    type="text"
+                    className="input input-bordered w-full mt-1"
+                    placeholder="Enter coupon code"
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value)}
+                />
+            </div>
 
             <CardElement className="p-3 border rounded-md" />
+
             <button
                 type="submit"
                 className="btn btn-primary w-full"
-                disabled={!stripe || !clientSecret}
+                disabled={!stripe || !clientSecret || isProcessing}
             >
-                Pay ৳{price}
+                {isProcessing ? 'Processing...' : `Pay ৳${discountedPrice}`}
             </button>
 
             {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}

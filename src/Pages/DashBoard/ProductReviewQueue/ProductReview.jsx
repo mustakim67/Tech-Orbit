@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { CiStar } from "react-icons/ci";
 
 const ProductReview = () => {
     const axiosSecure = useAxiosSecure();
@@ -120,9 +121,9 @@ const ProductReview = () => {
                                         </Link>
                                         <button
                                             onClick={() => featureMutation.mutate(product._id)}
-                                            className="bg-blue-900 text-white text-sm px-3 py-1 rounded hover:opacity-90"
+                                            className="bg-blue-900 text-white text-sm px-3 py-1 rounded hover:opacity-90 flex items-center"
                                         >
-                                            Feature
+                                            {product.featured?<>Featured<CiStar /></>:'Feature'}
                                         </button>
                                         <button
                                             onClick={() => statusMutation.mutate({ id: product._id, status: "accepted" })}

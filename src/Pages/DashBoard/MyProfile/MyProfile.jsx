@@ -5,7 +5,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import CheckoutForm from '../Payment/CheckOutForm';
-import { MdVerified } from "react-icons/md";
+import { MdWorkspacePremium } from "react-icons/md";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -41,14 +41,14 @@ const MyProfile = () => {
                 <img
                     src={user?.photoURL || 'https://i.ibb.co/LvFTrbJ/user.png'}
                     alt="User Profile"
-                    className="w-36 h-36 rounded-full border-4 border-indigo-500 shadow-md object-cover"
+                    className="w-36 h-36 rounded-full border-4 border-blue-500 shadow-md object-cover"
                 />
                 <div>
                     <h3 className="text-2xl font-semibold text-gray-800 flex items-center justify-center gap-2">
                         {user?.displayName}
                         {membershipStatus?.isSubscribed && (
-                            <span className="inline-flex items-center gap-1 text-blue-500 text-xs font-medium px-1">
-                                <MdVerified size={18} />
+                            <span className="inline-flex items-center text-blue-500 text-xs font-medium px-1">
+                                <MdWorkspacePremium size={30}/>
                             </span>
                         )}
                     </h3>
@@ -74,7 +74,7 @@ const MyProfile = () => {
                     >
                         ✕
                     </button>
-                    <h3 className="text-lg font-semibold text-indigo-700 mb-4">
+                    <h3 className="text-lg font-semibold text-blue-700 mb-4">
                         Complete Your Membership
                     </h3>
 
