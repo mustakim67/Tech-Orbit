@@ -13,35 +13,9 @@ import { RiCoupon2Fill } from "react-icons/ri";
 import { FcStatistics } from "react-icons/fc";
 import { IoIosLogOut } from "react-icons/io";
 import Swal from 'sweetalert2';
-import { auth } from '../Firebase/firebase.init';
-import useAuth from '../Hooks/useAuth';
 const DashBoardLayout = () => {
 
     const { role, roleLoading } = useUserRole();
-    const navigate=useNavigate();
-    const {logOut } = useAuth();
-
-    const handleSignOut = () => {
-        logOut(auth)
-            .then(() => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sign Out Successfully !',
-                    text: 'Thank You!',
-                    timer: 2000,
-                    showConfirmButton: false
-                });
-                navigate('/');
-            })
-            .catch(error => {
-                toast.error("Log Out failed!", {
-                    autoClose: 4000,
-                    pauseOnHover: true,
-                    draggable: true,
-                });
-                console.log(error)
-            });
-    }
 
     return (
         <div className="drawer lg:drawer-open min-h-screen bg-gray-100 text-gray-800">
@@ -89,21 +63,30 @@ const DashBoardLayout = () => {
                         <>
                             <li>
                                 <NavLink to="/dashboard/my-profile" className={({ isActive }) =>
-                                    isActive ? 'active-link' : 'default-link'}>
+                                    isActive
+                                        ? "bg-white text-blue-900 font-semibold rounded-md px-4 py-2"
+                                        : ""
+                                }>
                                     <FaUserCircle /> My Profile
                                 </NavLink>
                             </li>
 
                             <li>
                                 <NavLink to="/dashboard/add-product" className={({ isActive }) =>
-                                    isActive ? 'active-link' : 'default-link'}>
+                                    isActive
+                                        ? "bg-white text-blue-900 font-semibold rounded-md px-4 py-2"
+                                        : ""
+                                }>
                                     <FaPlusCircle /> Add Product
                                 </NavLink>
                             </li>
 
                             <li>
                                 <NavLink to="/dashboard/my-products" className={({ isActive }) =>
-                                    isActive ? 'active-link' : 'default-link'}>
+                                    isActive
+                                        ? "bg-white text-blue-900 font-semibold rounded-md px-4 py-2"
+                                        : ""
+                                }>
                                     <FaBoxOpen /> My Products
                                 </NavLink>
                             </li>
@@ -112,13 +95,19 @@ const DashBoardLayout = () => {
                         <>
                             <li>
                                 <NavLink to="/dashboard/product-review-queue" className={({ isActive }) =>
-                                    isActive ? 'active-link' : 'default-link'}>
+                                    isActive
+                                        ? "bg-white text-blue-900 font-semibold rounded-md px-4 py-2"
+                                        : "2"
+                                }>
                                     <MdReviews /> Product Review Queue
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/reported-content" className={({ isActive }) =>
-                                    isActive ? 'active-link' : 'default-link'}>
+                                    isActive
+                                        ? "bg-white text-blue-900 font-semibold rounded-md px-4 py-2"
+                                        : ""
+                                }>
                                     <VscReport /> Reported Contents
                                 </NavLink>
                             </li>
@@ -129,27 +118,33 @@ const DashBoardLayout = () => {
                         <>
                             <li>
                                 <NavLink to="/dashboard/admin-statistics" className={({ isActive }) =>
-                                    isActive ? 'active-link' : 'default-link'}>
+                                    isActive
+                                        ? "bg-white text-blue-900 font-semibold rounded-md px-4 py-2"
+                                        : ""
+                                }>
                                     <FcStatistics /> Admin Statistics
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/manage-users" className={({ isActive }) =>
-                                    isActive ? 'active-link' : 'default-link'}>
+                                    isActive
+                                        ? "bg-white text-blue-900 font-semibold rounded-md px-4 py-2"
+                                        : ""
+                                }>
                                     <MdManageAccounts /> Manage Users
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/manage-coupon" className={({ isActive }) =>
-                                    isActive ? 'active-link' : 'default-link'}>
+                                    isActive
+                                        ? "bg-white text-blue-900 font-semibold rounded-md px-4 py-2"
+                                        : ""
+                                }>
                                     <RiCoupon2Fill /> Manage Coupon
                                 </NavLink>
                             </li>
                         </>
                     }
-                    <div>
-                        <button onClick={handleSignOut} className='btn w-full mt-5'><IoIosLogOut size={25} /> Logout</button>
-                    </div>
                 </ul>
             </div>
         </div>

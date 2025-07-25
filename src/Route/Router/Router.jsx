@@ -22,6 +22,7 @@ import ManageCoupon from '../../Pages/DashBoard/Admin/ManageCoupon/ManageCoupon'
 import ModeratorRoutes from '../ModeratorRoutes/ModeratorRoutes';
 import Statistics from '../../Pages/DashBoard/Admin/Statistics/Statistics';
 import UserRoutes from '../UserRoutes/UserRoutes';
+import About from '../../Pages/About/About';
 
 export const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
         {
           path:'/products',
           Component:Products
+        },
+        {
+          path:'/about',
+          Component:About
         },
        {
           path:'/product-details/:id',

@@ -148,6 +148,7 @@ const AddProduct = () => {
             type="text"
             placeholder="Enter product name"
             className="input input-bordered w-full"
+            required
           />
           {errors.name && <p className="text-red-500 text-sm">Product name is required.</p>}
         </div>
@@ -160,6 +161,7 @@ const AddProduct = () => {
             type="file"
             accept="image/*"
             className="file-input file-input-bordered w-full"
+            required
           />
           {errors.image && <p className="text-red-500 text-sm">Product image is required.</p>}
         </div>
@@ -172,6 +174,7 @@ const AddProduct = () => {
             rows="4"
             placeholder="Enter product description"
             className="textarea textarea-bordered w-full"
+            required
           />
           {errors.description && <p className="text-red-500 text-sm">Description is required.</p>}
         </div>
@@ -204,6 +207,7 @@ const AddProduct = () => {
             type="url"
             placeholder="https://"
             className="input input-bordered w-full"
+            required
           />
         </div>
 

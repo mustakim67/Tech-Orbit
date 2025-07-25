@@ -44,7 +44,7 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         GoogleSignIn()
             .then(async (res) => {
-                console.log(res);
+                // console.log(res);
                 const user = res.user;
                 //update user info in the database
                 const userInfo = {

@@ -12,7 +12,7 @@ import useUserRole from '../../../Hooks/useUserRole';
 const Navbar = () => {
     const { role, roleLoading } = useUserRole();
     const { user, logOut } = useAuth();
-    console.log(user)
+    // console.log(user)
     const navigate = useNavigate()
     const handleSignOut = () => {
         logOut(auth)
@@ -32,14 +32,26 @@ const Navbar = () => {
                     pauseOnHover: true,
                     draggable: true,
                 });
-                console.log(error)
+                // console.log(error)
             });
     }
 
     const navItems = <>
-        <li><NavLink to={'/'}>Home</NavLink></li>
-        <li><NavLink to={'/products'}>Products</NavLink></li>
-        <li><NavLink to={'/about'}>About</NavLink></li>
+        <li><NavLink to={'/'} className={({ isActive }) =>
+            isActive
+                ? "text-blue-600 font-semibold border-b-2 border-blue-600 pb-1"
+                : "text-gray-700 hover:text-blue-600"
+        }>Home</NavLink></li>
+        <li><NavLink to={'/products'} className={({ isActive }) =>
+            isActive
+                ? "text-blue-600 font-semibold border-b-2 border-blue-600 pb-1"
+                : "text-gray-700 hover:text-blue-600"
+        }>Products</NavLink></li>
+        <li><NavLink to={'/about'} className={({ isActive }) =>
+            isActive
+                ? "text-blue-600 font-semibold border-b-2 border-blue-600 pb-1"
+                : "text-gray-700 hover:text-blue-600"
+        }>About</NavLink></li>
 
     </>
     return (

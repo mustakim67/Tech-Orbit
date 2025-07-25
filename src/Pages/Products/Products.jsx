@@ -65,7 +65,7 @@ const Products = () => {
             <form onSubmit={handleSearch} className="flex justify-center mb-8">
                 <input
                     type="text"
-                    placeholder="Search by tag..."
+                    placeholder="Search products..."
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
                     className="border border-blue-300 px-4 py-2 rounded-l-md w-full max-w-md focus:outline-none"
