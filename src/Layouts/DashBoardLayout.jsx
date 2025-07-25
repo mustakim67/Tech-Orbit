@@ -1,19 +1,47 @@
 import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router';
 import { FaHome, FaBoxOpen, FaPlusCircle, FaUserCircle, FaUserEdit, FaUsers, FaHourglassHalf, FaSearchLocation } from 'react-icons/fa';
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FaMotorcycle } from "react-icons/fa6";
 import logo from '../assets/logoIcon.png';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { MdReviews } from "react-icons/md";
 import { VscReport } from "react-icons/vsc";
 import { MdManageAccounts } from "react-icons/md";
 import useUserRole from '../Hooks/useUserRole';
 import { RiCoupon2Fill } from "react-icons/ri";
 import { FcStatistics } from "react-icons/fc";
+import { IoIosLogOut } from "react-icons/io";
+import Swal from 'sweetalert2';
+import { auth } from '../Firebase/firebase.init';
+import useAuth from '../Hooks/useAuth';
 const DashBoardLayout = () => {
 
     const { role, roleLoading } = useUserRole();
+    const navigate=useNavigate();
+    const {logOut } = useAuth();
+
+    const handleSignOut = () => {
+        logOut(auth)
+            .then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sign Out Successfully !',
+                    text: 'Thank You!',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+                navigate('/');
+            })
+            .catch(error => {
+                toast.error("Log Out failed!", {
+                    autoClose: 4000,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                console.log(error)
+            });
+    }
 
     return (
         <div className="drawer lg:drawer-open min-h-screen bg-gray-100 text-gray-800">
@@ -119,6 +147,9 @@ const DashBoardLayout = () => {
                             </li>
                         </>
                     }
+                    <div>
+                        <button onClick={handleSignOut} className='btn w-full mt-5'><IoIosLogOut size={25} /> Logout</button>
+                    </div>
                 </ul>
             </div>
         </div>
