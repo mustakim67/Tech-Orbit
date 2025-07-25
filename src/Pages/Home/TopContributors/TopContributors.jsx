@@ -36,7 +36,7 @@ const TopContributors = () => {
                         <h3 className="text-lg font-semibold text-gray-800">{user.name}</h3>
                         <p className="text-sm text-gray-500">{user.email}</p>
                         <span className="mt-2 inline-block bg-purple-100 text-blue-700 text-sm px-3 py-1 rounded-full font-medium">
-                            {user.count} Product{user.count > 1 ? 's' : ''}
+                            {user.count} Product
                         </span>
                     </div>
                 ))}
