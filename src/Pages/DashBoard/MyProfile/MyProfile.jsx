@@ -57,7 +57,7 @@ const MyProfile = () => {
                     {membershipStatus?.isSubscribed === false ? (
                         <button
                             onClick={handleSubscribeClick}
-                            className="btn btn-primary mt-4 w-full max-w-[200px]"
+                            className="btn bg-blue-900 text-white mt-4 w-full max-w-[200px]"
                         >
                             Subscribe for ৳{membershipStatus?.price || 199}
                         </button>
@@ -74,7 +74,7 @@ const MyProfile = () => {
                     >
                         ✕
                     </button>
-                    <h3 className="text-lg font-semibold text-blue-700 mb-4">
+                    <h3 className="text-lg font-semibold text-blue-900 mb-4">
                         Complete Your Membership
                     </h3>
 

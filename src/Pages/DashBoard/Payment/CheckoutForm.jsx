@@ -152,7 +152,7 @@ const CheckoutForm = ({ price, onSuccess }) => {
 
             <button
                 type="submit"
-                className="btn btn-primary w-full"
+                className="btn bg-blue-900 text-white w-full"
                 disabled={!stripe || !clientSecret || isProcessing}
             >
                 {isProcessing ? 'Processing...' : `Pay ৳${discountedPrice}`}

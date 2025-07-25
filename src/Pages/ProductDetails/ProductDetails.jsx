@@ -14,7 +14,7 @@ const ProductDetails = () => {
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
     const [rating, setRating] = useState(2);
-     const { role } = useUserRole();
+    const { role } = useUserRole();
 
 
     const { data: product = {} } = useQuery({
@@ -45,6 +45,10 @@ const ProductDetails = () => {
 
     const handleReport = async () => {
         if (!user) return Swal.fire("Login Required", "Please login to report", "info");
+        if (role === 'admin' || role === 'moderator') {
+            Swal.fire("Oops", "Admin or Moderator can't report a product", "error");
+            return;
+        }
         await axiosSecure.post("/reports", {
             productId: product._id,
             productName: product.name,
@@ -58,7 +62,10 @@ const ProductDetails = () => {
         e.preventDefault();
         const form = e.target;
         const description = form.description.value;
-
+        if (role === 'admin' || role === 'moderator') {
+            Swal.fire("Oops", "Admin or Moderator can't review a product", "error");
+            return;
+        }
         await axiosSecure.post("/reviews", {
             productId: product._id,
             reviewerName: user.displayName,

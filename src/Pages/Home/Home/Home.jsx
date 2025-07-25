@@ -3,6 +3,8 @@ import Banner from '../Banner/Banner';
 import FeaturedProducts from '../FeaturedProducts/FeaturedProducts';
 import TrendingProducts from '../TrendingProducts/TrendingProducts';
 import Coupon from '../Coupon/Coupon';
+import TechNews from '../TechNews/TechNews';
+import TopContributors from '../TopContributors/TopContributors';
 
 const Home = () => {
     return (
@@ -11,6 +13,8 @@ const Home = () => {
             <FeaturedProducts></FeaturedProducts>
             <TrendingProducts></TrendingProducts>
             <Coupon></Coupon>
+            <TechNews></TechNews>
+            <TopContributors></TopContributors>
         </div>
     );
 };

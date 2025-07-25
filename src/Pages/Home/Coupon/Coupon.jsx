@@ -17,7 +17,7 @@ const Coupon = () => {
     if (!coupons.length) return null;
 
     return (
-        <div className="my-16 px-4">
+        <div className="my-16">
             <h2 className="text-2xl md:text-3xl font-bold text-center text-blue-900 mb-6">
                 Exclusive Membership Coupons
             </h2>
@@ -32,7 +32,7 @@ const Coupon = () => {
                 {coupons.map((coupon) => (
                     <div
                         key={coupon._id}
-                        className="relative rounded-xl overflow-hidden shadow-md mx-auto"
+                        className="relative overflow-hidden shadow-md px-[7%]"
                         style={{
                             backgroundImage: `url(${bgImage})`,
                             backgroundSize: 'cover',
@@ -42,7 +42,7 @@ const Coupon = () => {
                     >
                         <div className="absolute inset-0 bg-black/10" />
 
-                        <div className="relative flex flex-col md:flex-row justify-between items-start md:items-center h-full py-6 md:px-50 px-10 text-white">
+                        <div className="relative flex flex-col md:flex-row justify-between items-start md:items-center h-full py-6 md:px-40 px-10 text-white">
                             <div>
                                 <h3 className="text-xl md:text-3xl font-bold">
                                     Use Code: <span className="text-blue-900">{coupon.code}</span>
