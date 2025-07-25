@@ -21,6 +21,7 @@ import AdminRoutes from '../AdminRoutes/AdminRoutes';
 import ManageCoupon from '../../Pages/DashBoard/Admin/ManageCoupon/ManageCoupon';
 import ModeratorRoutes from '../ModeratorRoutes/ModeratorRoutes';
 import Statistics from '../../Pages/DashBoard/Admin/Statistics/Statistics';
+import UserRoutes from '../UserRoutes/UserRoutes';
 
 export const router = createBrowserRouter([
     {
@@ -61,19 +62,19 @@ export const router = createBrowserRouter([
       children:[
         {
           path:'my-profile',
-          element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>
+          element:<PrivateRoute><UserRoutes><MyProfile></MyProfile></UserRoutes></PrivateRoute>
         },
         {
           path:'add-product',
-          element:<PrivateRoute><AddProduct></AddProduct></PrivateRoute>
+          element:<PrivateRoute><UserRoutes><AddProduct></AddProduct></UserRoutes></PrivateRoute>
         },
         {
           path:'my-products',
-          element:<PrivateRoute><MyProducts></MyProducts></PrivateRoute>
+          element:<PrivateRoute><UserRoutes><MyProducts></MyProducts></UserRoutes></PrivateRoute>
         },
         {
           path:'update-product/:id',
-          element:<PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>
+          element:<PrivateRoute><UserRoutes><UpdateProduct></UpdateProduct></UserRoutes></PrivateRoute>
         },
         {
           path:'product-review-queue',

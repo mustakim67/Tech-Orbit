@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
@@ -10,11 +10,13 @@ const MyProducts = () => {
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+    const [loading,setLoading]=useState(true);
 
-    const { data: products = [], isLoading } = useQuery({
+    const { data: products = []} = useQuery({
         queryKey: ["myProducts", user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/products/user/${user.email}`);
+            setLoading(false);
             return res.data;
         },
         enabled: !!user?.email,
@@ -49,8 +51,8 @@ const MyProducts = () => {
         });
     };
 
-    if (isLoading)
-        return <div className="text-center py-10 text-blue-500">Loading...</div>;
+    if (loading)
+        return <div className="text-center py-10 text-blue-500"><span className="loading loading-spinner loading-xl"></span></div>;
 
     return (
         <div className="md:p-6">

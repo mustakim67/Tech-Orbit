@@ -90,11 +90,11 @@ const UpdateProduct = () => {
     }
   };
 
-  if (!existingData) return <div className="text-center py-10">Loading...</div>;
+  if (!existingData) return <div className="text-center py-10"><span className="loading loading-spinner loading-xl"></span></div>;
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-8">
-      <h2 className="text-2xl font-bold mb-6 text-center text-indigo-600">Update Product</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-blue-900">Update Product</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Product Name */}
         <div>

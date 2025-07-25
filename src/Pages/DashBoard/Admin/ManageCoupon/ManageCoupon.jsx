@@ -8,10 +8,12 @@ const ManageCoupon = () => {
     const axiosSecure = useAxiosSecure();
     const [coupons, setCoupons] = useState([]);
     const [editingCoupon, setEditingCoupon] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const fetchCoupons = async () => {
         try {
             const res = await axiosSecure.get('/coupons');
+            setLoading(false);
             setCoupons(res.data);
         } catch (error) {
             Swal.fire('Error', 'Failed to fetch coupons', 'error');
@@ -82,6 +84,7 @@ const ManageCoupon = () => {
         }
     };
 
+    if (loading) return <div className="text-center py-10"><span className="loading loading-spinner loading-xl"></span></div>;
     return (
         <div className="p-4 md:p-8 mx-auto">
             <h2 className="text-2xl font-bold mb-6 text-blue-900">Add New Coupon</h2>

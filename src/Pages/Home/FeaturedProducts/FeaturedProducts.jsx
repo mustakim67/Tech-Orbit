@@ -5,17 +5,20 @@ import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaThumbsUp } from "react-icons/fa";
 import useUserRole from "../../../Hooks/useUserRole";
+import { useState } from "react";
 
 const FeaturedProducts = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const navigate = useNavigate();
     const { role } = useUserRole();
+    const [loading, setLoading] = useState(true);
 
     const { data: featured = [], refetch } = useQuery({
         queryKey: ["featured-products"],
         queryFn: async () => {
             const res = await axiosSecure.get("/products/featured");
+            setLoading(false);
             return res.data;
         },
     });
@@ -36,7 +39,8 @@ const FeaturedProducts = () => {
         }
         mutation.mutate(product._id);
     };
-
+    if (loading)
+        return <div className="text-center py-10 text-blue-500"><span className="loading loading-spinner loading-xl"></span></div>;
     return (
         <div className="py-5 md:py-10 mx-auto">
             <h2 className="text-3xl font-bold text-center mb-10 text-blue-900 font-mono">Featured Products</h2>

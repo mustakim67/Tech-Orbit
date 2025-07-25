@@ -19,12 +19,10 @@ const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
-    const { data = {}, refetch } = useQuery({
+    const { data = {}, refetch, isLoading,isFetching} = useQuery({
         queryKey: ["all-products", searchTerm, currentPage],
         queryFn: async () => {
-            const res = await axiosSecure.get(
-                `/products/all?search=${searchTerm}&page=${currentPage}&limit=${itemsPerPage}`
-            );
+            const res = await axiosSecure.get(`/products/all?search=${searchTerm}&page=${currentPage}&limit=${itemsPerPage}`);
             return res.data;
         },
     });
@@ -55,7 +53,8 @@ const Products = () => {
         setCurrentPage(1);
         setSearchTerm(searchText);
     };
-
+    //loading spinner
+    if (isLoading || isFetching) return <div className="text-center h-screen flex justify-center items-center py-10"><span className="loading loading-spinner loading-xl"></span></div>;
     return (
         <div className="px-[10%] py-20 mt-15 mx-auto">
             <h2 className="text-3xl font-bold justify-center mb-8 text-blue-900 font-mono flex gap-5">

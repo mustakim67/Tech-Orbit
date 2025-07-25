@@ -1,16 +1,19 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
+    const [loading,setLoading]=useState(true);
 
     // Fetch all users
-    const { data: users = [], isLoading } = useQuery({
+    const { data: users = []} = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
             const res = await axiosSecure.get("/users");
+            setLoading(false);
             return res.data;
         },
     });
@@ -44,7 +47,7 @@ const ManageUsers = () => {
         updateRole.mutate({ userId, role });
     };
 
-    if (isLoading) return <div className="text-center py-10">Loading users...</div>;
+    if (loading) return <div className="text-center py-10"><span className="loading loading-spinner loading-xl"></span></div>;
 
     return (
         <div className="mx-auto md:p-6">

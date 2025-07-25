@@ -24,8 +24,7 @@ const AdminStatistics = () => {
 
         fetchStats();
     }, []);
-
-    if (loading) return <p className="text-center py-10">Loading statistics...</p>;
+    if (loading) return <p className="text-center py-10"><span className="loading loading-spinner loading-xl"></span></p>;
     if (!stats) return <p className="text-center py-10">No stats found.</p>;
 
     const pieData = [

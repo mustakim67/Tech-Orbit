@@ -15,12 +15,14 @@ const ProductDetails = () => {
     const queryClient = useQueryClient();
     const [rating, setRating] = useState(2);
     const { role } = useUserRole();
+    const [loading, setLoading] = useState(true);
 
 
     const { data: product = {} } = useQuery({
         queryKey: ["product", id],
         queryFn: async () => {
             const res = await axiosSecure.get(`/products/${id}`);
+            setLoading(false);
             return res.data;
         }
     });
@@ -29,6 +31,7 @@ const ProductDetails = () => {
         queryKey: ["reviews", id],
         queryFn: async () => {
             const res = await axiosSecure.get(`/reviews/${id}`);
+            setLoading(false);
             return res.data;
         }
     });
@@ -78,7 +81,8 @@ const ProductDetails = () => {
         setRating(2);
         queryClient.invalidateQueries(["reviews", id]);
     };
-
+    if (loading)
+        return <div className="text-center h-screen flex justify-center items-center py-10"><span className="loading loading-spinner loading-xl"></span></div>;
     return (
         <div className="px-[5%] md:px-[10%] mx-auto p-6 mt-25 space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white rounded-xl shadow p-4">

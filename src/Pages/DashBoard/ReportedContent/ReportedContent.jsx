@@ -45,7 +45,7 @@ const ReportedContent = () => {
         });
     };
 
-    if (isLoading) return <div className="text-center py-10">Loading...</div>;
+    if (isLoading) return <div className="text-center py-10"><span className="loading loading-spinner loading-xl"></span></div>;
 
     return (
         <div className="mx-auto md:p-6">

@@ -5,17 +5,20 @@ import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaThumbsUp } from "react-icons/fa";
 import useUserRole from "../../../Hooks/useUserRole";
+import { useState } from "react";
 
 const TrendingProducts = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const navigate = useNavigate();
     const { role } = useUserRole();
+    const [loading,setLoading]=useState(true);
 
     const { data: products = [], refetch } = useQuery({
         queryKey: ["trending-products"],
         queryFn: async () => {
             const res = await axiosSecure.get("/products/trending");
+            setLoading(false)
             return res.data;
         },
     });
@@ -37,11 +40,12 @@ const TrendingProducts = () => {
             Swal.fire("Oops", err.response?.data?.error || "Vote failed", "error");
         }
     };
-
+    if (loading)
+        return <div className="text-center py-10 text-blue-500"><span className="loading loading-spinner loading-xl"></span></div>;
     return (
         <div className="py-10 mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8 text-blue-900 font-mono">Trending Products</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products.map(product => (
                     <div key={product._id} className="bg-white rounded-2xl shadow p-4 flex flex-col justify-between h-full">
                         <div>
@@ -72,7 +76,7 @@ const TrendingProducts = () => {
 
             <div className="text-center mt-8">
                 <Link to="/products">
-                    <button className="px-5 py-2 bg-blue-800 text-white rounded hover:bg-blue-900">
+                    <button className="px-5 py-2 bg-blue-900 text-white rounded">
                         Show All Products
                     </button>
                 </Link>

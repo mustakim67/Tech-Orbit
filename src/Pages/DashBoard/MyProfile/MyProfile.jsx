@@ -30,7 +30,7 @@ const MyProfile = () => {
     if (isLoading)
         return (
             <div className="text-center py-10 font-medium text-blue-600">
-                Loading Profile...
+                <span className="loading loading-spinner loading-xl"></span>
             </div>
         );
 

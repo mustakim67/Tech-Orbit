@@ -3,16 +3,19 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { CiStar } from "react-icons/ci";
+import { useState } from "react";
 
 const ProductReview = () => {
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
+    const [loading,setLoading]=useState(true);
 
     // Fetch all products
     const { data: products = [], isLoading } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
             const res = await axiosSecure.get("/products");
+            setLoading(false);
             return res.data.sort((a, b) => {
                 if (a.status === "pending" && b.status !== "pending") return -1;
                 if (a.status !== "pending" && b.status === "pending") return 1;
@@ -72,7 +75,8 @@ const ProductReview = () => {
             }
         });
     };
-
+    if (loading)
+        return <div className="text-center py-10 text-blue-500"><span className="loading loading-spinner loading-xl"></span></div>;
     return (
         <div className="md:p-6">
             <h2 className="text-2xl font-bold mb-6 text-blue-900">Product Review Queue</h2>
@@ -91,7 +95,7 @@ const ProductReview = () => {
                         {isLoading ? (
                             <tr>
                                 <td colSpan={4} className="text-center py-6 text-gray-500">
-                                    Loading...
+                                    <span className="loading loading-spinner loading-xl"></span>
                                 </td>
                             </tr>
                         ) : products.length === 0 ? (
@@ -121,9 +125,9 @@ const ProductReview = () => {
                                         </Link>
                                         <button
                                             onClick={() => featureMutation.mutate(product._id)}
-                                            className="bg-blue-900 text-white text-sm px-3 py-1 rounded hover:opacity-90 flex items-center"
+                                            className={`${product.featured ? 'bg-gray-300 text-white text-sm px-3 py-1 rounded hover:opacity-90 flex items-center cursor-not-allowed' : 'bg-blue-900 text-white text-sm px-3 py-1 rounded hover:opacity-90 flex items-center'}`}
                                         >
-                                            {product.featured?<>Featured<CiStar /></>:'Feature'}
+                                            {product.featured ? <>Featured<CiStar /></> : 'Feature'}
                                         </button>
                                         <button
                                             onClick={() => statusMutation.mutate({ id: product._id, status: "accepted" })}
