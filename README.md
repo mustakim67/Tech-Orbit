@@ -104,7 +104,7 @@ It offers **user authentication**, **subscription plans**, and an **admin dashbo
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/tech-orbit.git
+   git clone https://github.com/mustakim67/Tech-Orbit.git
    cd tech-orbit
 
 2. **Install dependencies**
