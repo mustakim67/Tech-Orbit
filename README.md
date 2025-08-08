@@ -125,7 +125,7 @@ It offers **user authentication**, **subscription plans**, and an **admin dashbo
 
 ---
  ## 📚 Resources
- **Firebase Documentation**
- **Stripe Checkout Docs**
- **React Query**
- **Tailwind CSS**
+ -`Firebase Documentation`
+ -`Stripe Checkout Docs`
+ -`React Query`
+ -`Tailwind CSS`
