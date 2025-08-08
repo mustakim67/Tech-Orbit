@@ -5,9 +5,7 @@ A **next-generation tech product discovery platform** where developers and tech 
 ---
 
 ## 📸 Screenshot
-> *(Add your screenshot image here for visual appeal)*  
-Example:  
-![TechOrbit Screenshot]([screenshot.png](https://i.postimg.cc/NjyjQWX1/Screenshot-2025-08-08-131944.jpg))
+![TechOrbit Screenshot](https://i.postimg.cc/NjyjQWX1/Screenshot-2025-08-08-131944.jpg)
 
 ---
 
@@ -112,5 +110,22 @@ It offers **user authentication**, **subscription plans**, and an **admin dashbo
 2. **Install dependencies**
    ```bash
    npm install
-   
 
+3. **Set up environment variables**
+      - Create a .env.local file in the root
+      - Add Firebase config keys, Stripe public key, and API URL
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+
+5. **Open in browser**
+   ```bash
+   http://localhost:5173
+
+---
+ ## 📚 Resources
+ **Firebase Documentation**
+ **Stripe Checkout Docs**
+ **React Query**
+ **Tailwind CSS**
