@@ -1,58 +1,74 @@
 # 🚀 TechOrbit
 
-A next-generation tech product discovery platform where developers and tech enthusiasts can **share**, **explore**, and **vote** on the latest digital products and will be able to keep update him/herself.
-
-### 🔗 Live URL
-[🌐 https://tech-orbit-dea07.web.app](https://tech-orbit-dea07.web.app)
+A **next-generation tech product discovery platform** where developers and tech enthusiasts can **share**, **explore**, and **vote** on the latest digital products, staying up-to-date with the tech world.
 
 ---
 
-## 🎯 Purpose
-
-TechOrbit empowers creators to showcase innovative web and mobile tools, while helping users find the best and most trending products. It features an engaging interface, user-generated reviews, subscription-based access, and admin tools — making it ideal for both developers and tech lovers.
+## 📸 Screenshot
+> *(Add your screenshot image here for visual appeal)*  
+Example:  
+![TechOrbit Screenshot]([screenshot.png](https://i.postimg.cc/NjyjQWX1/Screenshot-2025-08-08-131944.jpg))
 
 ---
 
-## 🧩 Key Features
+## 🔗 Live Project
+🌐 **Live URL:** [https://tech-orbit-dea07.web.app](https://tech-orbit-dea07.web.app)
 
-- ✅ **User Authentication** (Firebase)
-- 🚀 **Post & Discover Products** (name, image, tags, link, description)
-- 🗳️ **Voting System** (1 vote per product per user, owner restricted)
-- 🧠 **Trending & Featured Products** (based on votes and recency)
-- 📝 **Review & Report System** (verified user feedback)
-- 💳 **Stripe Payments** (subscription unlocks full product access)
-- 🎟️ **Coupon Code Support** for discounted subscriptions
-- 🎯 **Top Contributors Leaderboard**
-- 📰 **Tech News Section** and **Coupon Slider**
-- 🧑‍💼 **Admin Panel** with role management, coupon control, and parcel assignment
-- 📊 **Analytics UI** (recharts for admin dashboard)
+---
+
+## 🎯 Project Overview
+
+TechOrbit empowers creators to **showcase innovative web and mobile tools**, while helping users **find trending products** through voting and reviews.  
+It offers **user authentication**, **subscription plans**, and an **admin dashboard** for full control over content and community.
+
+---
+
+## 🧩 Core Features
+
+- 🔐 **User Authentication** with Firebase
+- 🚀 **Post & Discover Products** (with name, image, tags, link, description)
+- 🗳️ **Voting System** (1 vote per product per user, owners restricted)
+- 📈 **Trending & Featured Products** based on votes & recency
+- 📝 **Review & Report** system for verified feedback
+- 💳 **Stripe Payments** for subscription-based full access
+- 🎟️ **Coupon Code** discounts
+- 🏆 **Top Contributors Leaderboard**
+- 📰 **Tech News Section** & **Coupon Slider**
+- 🧑‍💼 **Admin Panel** (role management, coupon control, parcel assignment)
+- 📊 **Analytics Dashboard** with Recharts
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React, Tailwind CSS, DaisyUI, Vite
-- **Backend:** Node.js, Express, MongoDB (not included here)
-- **Auth:** Firebase Authentication
-- **Payment:** Stripe Checkout
+**Frontend:**  
+- React  
+- Tailwind CSS  
+- DaisyUI  
+- Vite  
+
+**Backend:**  
+- Node.js, Express, MongoDB *(not included in this repo)*  
+
+**Authentication:**  
+- Firebase Authentication  
+
+**Payments:**  
+- Stripe Checkout  
 
 ---
 
-## 📦 NPM Packages Used
-
-> Listed without duplicates and grouped by functionality.
+## 📦 Dependencies
 
 ### ⚛️ React & Utilities
-- `react`
-- `react-dom`
+- `react`, `react-dom`
 - `react-router` – Routing
-- `react-icons` – Icon library
-- `react-hot-toast` – Quick toast notifications
-- `react-toastify` – Toast UI
+- `react-icons` – Icons
+- `react-hot-toast`, `react-toastify` – Toast notifications
 - `react-fast-marquee` – Scrolling banner
-- `react-hook-form` – Form management
-- `react-responsive-carousel` – Image carousels
-- `react-tag-input` – Tag input for product tags
+- `react-hook-form` – Form handling
+- `react-responsive-carousel` – Image carousel
+- `react-tag-input` – Product tags
 
 ### 💅 Styling
 - `tailwindcss`
@@ -63,27 +79,38 @@ TechOrbit empowers creators to showcase innovative web and mobile tools, while h
 - `axios` – API requests
 
 ### 🔐 Authentication
-- `firebase` – Auth & token management
+- `firebase`
 
 ### 💳 Payment
 - `@stripe/stripe-js`
 - `@stripe/react-stripe-js`
 
 ### 📊 Charts
-- `recharts` – Data visualization for admin stats
+- `recharts`
 
 ### 🎉 Alerts
-- `sweetalert2` – Alert modals for confirmation & success
+- `sweetalert2`
 
 ---
 
-## 🔧 Dev Dependencies
-
-- `vite` – Frontend build tool
-- `@vitejs/plugin-react` – Vite plugin for React
-- `eslint`, `@eslint/js`, `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh` – Linting and code quality
-- `@types/react`, `@types/react-dom` – TypeScript typings
-- `globals` – Global variables for lint config
+## 🛠️ Dev Dependencies
+- `vite`
+- `@vitejs/plugin-react`
+- `eslint`, `@eslint/js`, `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh`
+- `@types/react`, `@types/react-dom`
+- `globals`
 
 ---
+
+## 🖥️ How to Run Locally
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/tech-orbit.git
+   cd tech-orbit
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   
 
