@@ -65,7 +65,7 @@ const TrendingProducts = () => {
                         <button
                             onClick={() => handleUpvote(product)}
                             disabled={product?.owner?.email === user?.email}
-                            className="mt-auto flex items-center justify-center gap-2 bg-blue-900 text-white px-3 py-1.5 text-sm rounded hover:opacity-90 disabled:opacity-70 disabled:cursor-not-allowed btn"
+                            className="mt-auto flex items-center justify-center gap-2 bg-blue-800 text-white px-3 py-1.5 text-sm rounded hover:opacity-90 disabled:opacity-70 disabled:cursor-not-allowed btn"
                         >
                             <FaThumbsUp />
                             {product.votes?.length || 0}
@@ -76,7 +76,7 @@ const TrendingProducts = () => {
 
             <div className="text-center mt-8">
                 <Link to="/products">
-                    <button className="px-5 py-2 bg-blue-900 text-white rounded">
+                    <button className="px-5 py-2 bg-black text-white rounded">
                         Show All Products
                     </button>
                 </Link>

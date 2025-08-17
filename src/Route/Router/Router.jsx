@@ -23,6 +23,7 @@ import ModeratorRoutes from '../ModeratorRoutes/ModeratorRoutes';
 import Statistics from '../../Pages/DashBoard/Admin/Statistics/Statistics';
 import UserRoutes from '../UserRoutes/UserRoutes';
 import About from '../../Pages/About/About';
+import Contact from '../../Pages/Contact/Contact';
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
         {
           path:'/forbidden',
           Component: Forbidden
+        },
+        {
+          path:'/contact',
+          Component: Contact
         }
       ]
     },

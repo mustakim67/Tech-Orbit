@@ -69,9 +69,9 @@ const Register = () => {
 
 
     return (
-        <div className='bg-gradient-to-br from-blue-50 to-white min-h-screen'>
+        <div className='min-h-screen'>
             <div className="md:py-60 flex items-center justify-center px-[5%] py-30 md:px-[10%]">
-                <div className="w-full max-w-3xl bg-white shadow-xl rounded-3xl flex flex-col md:flex-row overflow-hidden">
+                <div className="w-full max-w-3xl shadow-xl rounded-3xl flex flex-col md:flex-row overflow-hidden border border-gray-300">
 
                     {/* Left */}
                     <div className="md:w-[40%] bg-blue-100 flex items-center justify-center p-6">
@@ -80,12 +80,12 @@ const Register = () => {
 
                     {/* Right */}
                     <div className="md:w-1/2 p-8">
-                        <h2 className="text-3xl font-bold text-blue-900 mb-6">Create Account</h2>
+                        <h2 className="text-3xl font-bold mb-6">Create Account</h2>
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
                             {/* Name */}
                             <div>
-                                <label className="block text-gray-700 mb-1">Name</label>
+                                <label className="block mb-1">Name</label>
                                 <input
                                     type="text"
                                     {...register('name', { required: 'Name is required' })}
@@ -96,7 +96,7 @@ const Register = () => {
 
                             {/* Email */}
                             <div>
-                                <label className="block text-gray-700 mb-1">Email</label>
+                                <label className="block mb-1">Email</label>
                                 <input
                                     type="email"
                                     {...register('email', { required: 'Email is required' })}
@@ -107,7 +107,7 @@ const Register = () => {
 
                             {/* Password */}
                             <div>
-                                <label className="block text-gray-700 mb-1">Password</label>
+                                <label className="block mb-1">Password</label>
                                 <div className="relative">
                                     <input
                                         type={showPassword ? 'text' : 'password'}
@@ -116,7 +116,7 @@ const Register = () => {
                                     />
                                     <span
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-xl text-gray-500"
+                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-xl"
                                     >
                                         {showPassword ? <FaEyeSlash /> : <FaRegEye />}
                                     </span>
@@ -126,7 +126,7 @@ const Register = () => {
 
                             {/* Image Upload */}
                             <div>
-                                <label className="block text-gray-700 mb-1">Upload Profile Picture</label>
+                                <label className="block mb-1">Upload Profile Picture</label>
                                 <input
                                     type="file"
                                     accept="image/*"
@@ -138,12 +138,12 @@ const Register = () => {
                             {/* Submit */}
                             <button
                                 type="submit"
-                                className="w-full btn bg-[#1E3A8A] text-white py-2 rounded-xl"
+                                className="w-full btn bg-blue-800 text-white py-2 rounded-xl"
                             >
                                 Register
                             </button>
 
-                            <p className="text-sm text-center text-gray-600 mt-4">
+                            <p className="text-sm text-center mt-4">
                                 Already have an account? <a href="/login" className="text-blue-600 hover:underline">Login</a>
                             </p>
                         </form>

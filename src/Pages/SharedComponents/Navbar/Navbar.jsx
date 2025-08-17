@@ -46,11 +46,6 @@ const Navbar = () => {
                 ? " font-semibold border-b-2 border-blue-600 pb-1"
                 : "hover:text-blue-600"
         }>Products</NavLink></li>
-        <li><NavLink to={'/about'} className={({ isActive }) =>
-            isActive
-                ? " font-semibold border-b-2 border-blue-600 pb-1"
-                : " hover:text-blue-600"
-        }>About</NavLink></li>
         {
             user ? (<><li>
                 <NavLink
@@ -74,6 +69,17 @@ const Navbar = () => {
             </li>
             </>) : " "
         }
+        <li><NavLink to={'/about'} className={({ isActive }) =>
+            isActive
+                ? " font-semibold border-b-2 border-blue-600 pb-1"
+                : " hover:text-blue-600"
+        }>About</NavLink></li>
+        <li><NavLink to={'/contact'} className={({ isActive }) =>
+            isActive
+                ? " font-semibold border-b-2 border-blue-600 pb-1"
+                : " hover:text-blue-600"
+        }>Contact</NavLink></li>
+
 
     </>
     return (
@@ -103,14 +109,14 @@ const Navbar = () => {
                     {/* Sign In button (shown if no user) */}
                     <div className={`${user ? "hidden" : ""}`}>
                         <Link to={user ? " " : '/login'}>
-                            <button className="bg-[#1E3A8A] text-white btn mr-3">
+                            <button className="bg-blue-800 text-white btn mr-3">
                                 {user ? " " : 'Sign In'}
                             </button>
                         </Link>
                     </div>
 
                     {/* User section (theme toggler + profile dropdown) */}
-                    <div className={`${user ? "flex items-center gap-4" : "hidden"}`}>
+                    <div className={"flex items-center gap-4"}>
                         {/* Theme toggler before profile */}
                         <label className="swap swap-rotate">
                             {/* this hidden checkbox controls the state */}
@@ -135,26 +141,29 @@ const Navbar = () => {
                             </svg>
                         </label>
                         {/* Profile dropdown */}
-                        <div className="dropdown dropdown-hover">
-                            <div tabIndex={0} role="button" className="w-12 md:w-18 rounded-full mr-4">
-                                <img
-                                    src={user?.photoURL}
-                                    alt="User"
-                                    className="rounded-full w-12 h-12 md:w-18 md:h-18 object-cover"
-                                />
+                        <div className={`${user ? " " : "hidden"}`}>
+                            <div className="dropdown dropdown-hover">
+                                <div tabIndex={0} role="button" className="w-12 md:w-18 rounded-full mr-4">
+                                    <img
+                                        src={user?.photoURL}
+                                        alt="User"
+                                        className="rounded-full w-12 h-12 md:w-18 md:h-18 object-cover"
+                                    />
+                                </div>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm -translate-x-20">
+                                    <a className="mx-auto">{user?.displayName || "User Name"}</a>
+                                    <li>
+                                        <button
+                                            onClick={handleSignOut}
+                                            className="btn btn-sm mt-1 rounded-full"
+                                        >
+                                            Sign Out <LuLogOut size={15} />
+                                        </button>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm -translate-x-20">
-                                <a className="mx-auto">{user?.displayName || "User Name"}</a>
-                                <li>
-                                    <button
-                                        onClick={handleSignOut}
-                                        className="btn btn-sm mt-1 rounded-full"
-                                    >
-                                        Sign Out <LuLogOut size={15} />
-                                    </button>
-                                </li>
-                            </ul>
                         </div>
+
                     </div>
                 </div>
 

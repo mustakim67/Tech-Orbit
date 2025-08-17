@@ -68,11 +68,11 @@ const Products = () => {
                     placeholder="Search products..."
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
-                    className="border border-blue-300 px-4 py-2 rounded-l-md w-full max-w-md focus:outline-none"
+                    className="border border-gray-300 px-4 py-2 rounded-l-md w-full max-w-md focus:outline-none"
                 />
                 <button
                     type="submit"
-                    className="bg-blue-900 text-white px-4 py-2 rounded-r-md hover:bg-blue-800"
+                    className="bg-black text-white px-4 py-2 rounded-r-md"
                 >
                     Search
                 </button>
@@ -111,7 +111,7 @@ const Products = () => {
                         <button
                             onClick={() => handleUpvote(product)}
                             disabled={product?.owner?.email === user?.email}
-                            className="mt-auto flex items-center justify-center gap-2 bg-blue-900 text-white px-3 py-1.5 text-sm rounded hover:opacity-90 disabled:opacity-70 disabled:cursor-not-allowed btn"
+                            className="mt-auto flex items-center justify-center gap-2 bg-blue-800 text-white px-3 py-1.5 text-sm rounded hover:opacity-90 disabled:opacity-70 disabled:cursor-not-allowed btn"
                         >
                             <FaThumbsUp />
                             {product.votes?.length || 0}
@@ -128,8 +128,8 @@ const Products = () => {
                             key={i}
                             onClick={() => setCurrentPage(i + 1)}
                             className={`px-3 py-1 rounded ${currentPage === i + 1
-                                ? "bg-blue-900 text-white"
-                                : "bg-blue-100 text-blue-900"
+                                ? "bg-black text-white"
+                                : "bg-blue-100 text-black"
                                 }`}
                         >
                             {i + 1}

@@ -73,28 +73,28 @@ const Login = () => {
     }
 
     return (
-        <div className='bg-gradient-to-br from-blue-50 to-white'>
+        <div className=''>
             <div className="md:py-60 flex items-center justify-center px-[5%] py-30 md:px-[10%]">
-                <div className="w-full max-w-3xl bg-white shadow-xl rounded-3xl flex flex-col md:flex-row overflow-hidden">
+                <div className="w-full max-w-3xl shadow-xl rounded-3xl flex flex-col md:flex-row overflow-hidden border border-gray-300">
 
                     {/* Left Side */}
-                    <div className="md:w-[40%] bg-blue-100 flex items-center justify-center p-6">
+                    <div className="md:w-[40%] flex items-center justify-center p-6 bg-blue-100">
                         <img
                             src={loginImage}
                             alt="Login Illustration"
-                            className="w-full h-auto max-h-[400px]"
+                            className="w-full h-auto max-h-[400px] rounded-xl"
                         />
                     </div>
 
                     {/* Right Side */}
                     <div className="md:w-1/2 p-8">
-                        <h2 className="text-3xl font-bold text-blue-900 mb-6">Welcome Back</h2>
+                        <h2 className="text-3xl font-bold  mb-6">Welcome Back</h2>
 
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
                             {/* Email */}
                             <div>
-                                <label className="block text-gray-700 mb-1">Email</label>
+                                <label className="block mb-1">Email</label>
                                 <input
                                     type="email"
                                     {...register('email', { required: 'Email is required' })}
@@ -105,7 +105,7 @@ const Login = () => {
 
                             {/* Password */}
                             <div>
-                                <label className="block text-gray-700 mb-1">Password</label>
+                                <label className="block mb-1">Password</label>
                                 <div className="relative">
                                     <input
                                         type={showPassword ? 'text' : 'password'}
@@ -126,7 +126,7 @@ const Login = () => {
                             {/* Login Button */}
                             <button
                                 type="submit"
-                                className="w-full btn bg-[#1E3A8A] text-white py-2 rounded-xl transition duration-300"
+                                className="w-full btn bg-blue-800 text-white py-2 rounded-xl transition duration-300"
                             >
                                 Login
                             </button>
@@ -138,14 +138,14 @@ const Login = () => {
                             <button
                                 type="button"
                                 onClick={handleGoogleSignIn}
-                                className="btn w-full bg-white border border-gray-300 hover:bg-gray-100 text-gray-700"
+                                className="btn w-full border border-gray-300 bg-gray-100 text-gray-700"
                             >
                                 <FcGoogle className="text-xl mr-2" />
                                 Continue with Google
                             </button>
 
                             {/* Register Link */}
-                            <p className="text-sm text-center text-gray-600 mt-4">
+                            <p className="text-sm text-center mt-4">
                                 Don’t have an account? <a href="/register" className="text-blue-600 hover:underline">Sign up</a>
                             </p>
                         </form>
