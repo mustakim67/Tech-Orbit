@@ -18,7 +18,7 @@ const Coupon = () => {
 
     return (
         <div className="my-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-center text-blue-900 mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
                 Exclusive Membership Coupons
             </h2>
             <Carousel
@@ -45,7 +45,7 @@ const Coupon = () => {
                         <div className="relative flex flex-col md:flex-row justify-between items-start md:items-center h-full py-6 md:px-40 px-10 text-white">
                             <div>
                                 <h3 className="text-xl md:text-3xl font-bold">
-                                    Use Code: <span className="text-blue-900">{coupon.code}</span>
+                                    Use Code: <span className="">{coupon.code}</span>
                                 </h3>
                                 <p className="text-sm mt-1">{coupon.description}</p>
                             </div>

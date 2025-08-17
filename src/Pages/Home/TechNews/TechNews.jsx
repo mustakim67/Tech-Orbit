@@ -37,7 +37,7 @@ const TechNews = () => {
                             href={item.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 text-sm font-medium flex items-center mt-3 hover:underline"
+                            className="text-sm font-medium flex items-center mt-3 hover:underline"
                         >
                             Read More <VscLinkExternal className="ml-1" />
                         </a>

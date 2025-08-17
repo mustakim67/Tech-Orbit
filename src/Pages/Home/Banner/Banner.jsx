@@ -12,28 +12,28 @@ const slides = [
         title: 'Built for Innovators & Makers',
         desc: 'Showcase your latest tech products, tools, or apps and get discovered by a growing community.',
         btn: 'Submit Product',
-        link:'/dashboard/add-product',
+        link: '/dashboard/add-product',
         reverse: true,
     },
     {
         img: img1,
         title: 'Smart Subscriptions & Discounts',
         desc: 'Subscribe for premium access and unlock features like unlimited product posting and coupon benefits.',
-        link:'/dashboard/my-profile',
+        link: '/dashboard/my-profile',
         btn: 'Subscribe Now',
     },
     {
         img: img3,
         title: 'Discover & Support Tech Talent',
         desc: 'Browse trending tools, vote on your favorites, and support the best innovations from emerging creators.',
-        link:'/products',
+        link: '/products',
         btn: 'Browse Products',
     },
 ];
 
 const Banner = () => {
     return (
-        <div className="mx-auto mt-20 md:mt-30 mb-10 md:px-4 py-2">
+        <div className="mx-auto mt-20 md:mt-30 mb-10 py-2 px-4 border border-gray-300 rounded-xl">
             <Carousel
                 autoPlay
                 infiniteLoop
@@ -45,13 +45,13 @@ const Banner = () => {
                 emulateTouch
             >
                 {slides.map((slide, index) => (
-                    <div key={index} className="bg-blue-50 rounded-xl px-8">
+                    <div key={index} className="bg-black/3050 rounded-xl px-8 ">
                         <div className={`flex flex-col-reverse ${slide.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center justify-between gap-8 h-[600px] p-6`}>
                             <div className="md:w-1/2 text-left space-y-2 md:space-y-6">
-                                <h2 className="text-3xl md:text-4xl font-bold text-blue-900">
+                                <h2 className="text-3xl md:text-4xl font-bold">
                                     {slide.title}
                                 </h2>
-                                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                                <p className="text-base md:text-lg leading-relaxed">
                                     {slide.desc}
                                 </p>
                                 <button className="btn bg-blue-800 text-white rounded-xl px-6 py-2 mb-2 text-sm md:text-base">

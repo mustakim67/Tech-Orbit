@@ -52,7 +52,7 @@ const TrendingProducts = () => {
                             <img src={product.image} alt={product.name} className="h-40 w-full object-cover rounded-xl mb-3" />
 
                             <Link to={`/product-details/${product._id}`}>
-                                <h3 className="text-lg font-semibold text-blue-800 hover:underline mb-2">{product.name}</h3>
+                                <h3 className="text-lg font-semibold hover:underline mb-2">{product.name}</h3>
                             </Link>
 
                             <div className="flex flex-wrap gap-1 mb-4">

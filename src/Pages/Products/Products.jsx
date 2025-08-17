@@ -19,7 +19,7 @@ const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
-    const { data = {}, refetch, isLoading,isFetching} = useQuery({
+    const { data = {}, refetch, isLoading, isFetching } = useQuery({
         queryKey: ["all-products", searchTerm, currentPage],
         queryFn: async () => {
             const res = await axiosSecure.get(`/products/all?search=${searchTerm}&page=${currentPage}&limit=${itemsPerPage}`);
@@ -57,7 +57,7 @@ const Products = () => {
     if (isLoading || isFetching) return <div className="text-center h-screen flex justify-center items-center py-10"><span className="loading loading-spinner loading-xl"></span></div>;
     return (
         <div className="px-[10%] py-20 mt-15 mx-auto">
-            <h2 className="text-3xl font-bold justify-center mb-8 text-blue-900 font-mono flex gap-5">
+            <h2 className="text-3xl font-bold justify-center mb-8 font-mono flex gap-5">
                 <span><GrSearch /></span>Explore Products
             </h2>
 
@@ -83,7 +83,7 @@ const Products = () => {
                 {products.map((product) => (
                     <div
                         key={product._id}
-                        className="bg-white rounded-2xl shadow p-4 flex flex-col justify-between h-full"
+                        className="rounded-2xl shadow p-4 flex flex-col justify-between h-full border border-gray-300"
                     >
                         <div>
                             <img
@@ -92,7 +92,7 @@ const Products = () => {
                                 className="h-40 w-full object-cover rounded-xl mb-3"
                             />
                             <Link to={`/product-details/${product._id}`}>
-                                <h3 className="text-lg font-semibold text-blue-800 hover:underline mb-2">
+                                <h3 className="text-lg font-semibold hover:underline mb-2">
                                     {product.name}
                                 </h3>
                             </Link>
@@ -100,7 +100,7 @@ const Products = () => {
                                 {product.tags?.map((tag, i) => (
                                     <span
                                         key={i}
-                                        className="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded"
+                                        className="bg-blue-100 text-black text-xs px-2 py-1 rounded"
                                     >
                                         {tag}
                                     </span>
