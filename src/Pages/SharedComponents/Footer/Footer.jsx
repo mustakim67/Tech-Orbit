@@ -3,11 +3,10 @@ import logo from '../../../assets/logoIconw.png'
 
 const Footer = () => {
     return (
-        <footer className="footer footer-horizontal footer-center bg-[#1E3A8A] text-primary-content px-[5%] md:px-[10%] py-20 ">
+        <footer className="footer footer-horizontal footer-center bg-black text-primary-content px-[5%] md:px-[10%] py-20 border-t-2 border-t-gray-400">
             <aside>
                 <div className="flex items-center gap-3 px-2">
-                    <img src={logo} alt="TechOrbit" className="w-10 h-10" />
-                    <span className="text-xl font-bold">TECHORBIT</span>
+                    <span className="text-2xl font-extrabold cedarville-cursive-regular">TECHORBIT</span>
                 </div>
 
                 <p className="font-bold">

@@ -44,10 +44,10 @@ const TrendingProducts = () => {
         return <div className="text-center py-10 text-blue-500"><span className="loading loading-spinner loading-xl"></span></div>;
     return (
         <div className="py-10 mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8 text-blue-900 font-mono">Trending Products</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <h2 className="text-3xl font-bold text-center mb-8 font-mono">Trending Products</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
                 {products.map(product => (
-                    <div key={product._id} className="bg-white rounded-2xl shadow p-4 flex flex-col justify-between h-full">
+                    <div key={product._id} className="rounded-2xl shadow p-4 flex flex-col justify-between h-full border border-gray-400">
                         <div>
                             <img src={product.image} alt={product.name} className="h-40 w-full object-cover rounded-xl mb-3" />
 

@@ -26,13 +26,13 @@ const news = [
 const TechNews = () => {
     return (
         <section className="my-16 px-[5%] md:px-[1%]">
-            <h2 className="text-3xl font-bold text-center mb-8 text-blue-900">Tech News & Updates</h2>
+            <h2 className="text-3xl font-bold text-center mb-8">Tech News & Updates</h2>
             <div className="grid md:grid-cols-3 gap-6">
                 {news.map((item, i) => (
-                    <div key={i} className="bg-white border shadow-md hover:shadow-lg transition-all p-6 rounded-lg">
-                        <p className="text-xs text-gray-400 mb-1">{item.date}</p>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">{item.title}</h3>
-                        <p className="text-sm text-gray-600">{item.excerpt}</p>
+                    <div key={i} className="border shadow-md hover:shadow-lg transition-all p-6 rounded-lg">
+                        <p className="text-xs  mb-1">{item.date}</p>
+                        <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                        <p className="text-sm">{item.excerpt}</p>
                         <a
                             href={item.url}
                             target="_blank"

@@ -1,2 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.cedarville-cursive-regular {
+    font-family: "Cedarville Cursive", cursive;
+    font-style: normal;
+}
