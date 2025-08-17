@@ -18,11 +18,11 @@ const DashBoardLayout = () => {
     const { role, roleLoading } = useUserRole();
 
     return (
-        <div className="drawer lg:drawer-open min-h-screen bg-gray-100 text-gray-800">
+        <div className="drawer lg:drawer-open min-h-screen  text-gray-800">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Top Navbar */}
-                <div className="navbar bg-white shadow-md px-4 lg:hidden">
+                <div className="navbar shadow-md px-4 lg:hidden">
                     <div className="flex-none">
                         <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"

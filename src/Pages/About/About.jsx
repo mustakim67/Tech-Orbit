@@ -8,7 +8,7 @@ const About = () => {
             <div className="space-y-6">
 
                 {/* What is TechOrbit */}
-                <div className="collapse collapse-arrow bg-base-100 border border-gray-300 rounded-xl shadow">
+                <div className="collapse collapse-arrow bg-base-100 border border-gray-200 rounded-xl shadow">
                     <input type="radio" name="about-accordion" defaultChecked />
                     <div className="collapse-title text-xl font-semibold">
                         What is TechOrbit?
@@ -22,7 +22,7 @@ const About = () => {
                 </div>
 
                 {/* Mission */}
-                <div className="collapse collapse-arrow bg-base-100 border border-gray-300 rounded-xl shadow">
+                <div className="collapse collapse-arrow bg-base-100 border border-gray-200 rounded-xl shadow">
                     <input type="radio" name="about-accordion" />
                     <div className="collapse-title text-xl font-semibold">
                         Our Mission
@@ -37,7 +37,7 @@ const About = () => {
                 </div>
 
                 {/* Why Choose Us */}
-                <div className="collapse collapse-arrow bg-base-100 border border-gray-300 rounded-xl shadow">
+                <div className="collapse collapse-arrow bg-base-100 border border-gray-200 rounded-xl shadow">
                     <input type="radio" name="about-accordion" />
                     <div className="collapse-title text-xl font-semibold">
                         Why Choose Us?
@@ -53,7 +53,7 @@ const About = () => {
                 </div>
 
                 {/* Team */}
-                <div className="collapse collapse-arrow bg-base-100 border border-gray-300 rounded-xl shadow">
+                <div className="collapse collapse-arrow bg-base-100 border border-gray-200 rounded-xl shadow">
                     <input type="radio" name="about-accordion" />
                     <div className="collapse-title text-xl font-semibold">
                         Meet the Team

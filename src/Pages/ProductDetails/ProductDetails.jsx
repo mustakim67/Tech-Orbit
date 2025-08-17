@@ -85,7 +85,7 @@ const ProductDetails = () => {
         return <div className="text-center h-screen flex justify-center items-center py-10"><span className="loading loading-spinner loading-xl"></span></div>;
     return (
         <div className="px-[5%] md:px-[10%] mx-auto p-6 mt-25 space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 rounded-xl shadow p-4 border border-gray-300">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 rounded-xl shadow p-4 border border-gray-200">
                 <img src={product.image} alt={product.name} className="w-full h-64 object-cover rounded-xl" />
                 <div>
                     <h2 className="text-3xl font-bold mb-2">{product.name}</h2>
@@ -129,7 +129,7 @@ const ProductDetails = () => {
                 <h3 className="text-xl font-semibold mb-4">Reviews</h3>
                 <div className="grid md:grid-cols-2 gap-4 rounded-lg">
                     {reviews.length != 0 ? (reviews.map((review, i) => (
-                        <div key={i} className="p-4 rounded-xl shadow border border-gray-300">
+                        <div key={i} className="p-4 rounded-xl shadow border border-gray-200">
                             <div className="flex items-center gap-3 mb-2">
                                 <img src={review.reviewerImage} alt="User" className="w-10 h-10 rounded-full" />
                                 <div>

@@ -43,12 +43,12 @@ const AdminStatistics = () => {
     return (
         <div className="md:p-6 dark:bg-gray-900 min-h-screen">
             <h2 className="text-lg md:text-2xl text-blue-900 dark:text-white mb-8 text-center font-bold">
-                Admin Statistics Overview
+                Site Overview
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 text-center">
                 <StatCard label="Total Products" value={stats.totalProducts} color="text-blue-600" bgColor="bg-blue-300" />
-                <StatCard label="Total Reviews" value={stats.totalReviews} color="text-white" bgColor="bg-yellow-400"/>
+                <StatCard label="Total Reviews" value={stats.totalReviews} color="text-white" bgColor="bg-yellow-400" />
                 <StatCard label="Total Users" value={stats.totalUsers} color="text-indigo-600" bgColor="bg-violet-300" />
             </div>
 

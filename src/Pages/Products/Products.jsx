@@ -68,7 +68,7 @@ const Products = () => {
                     placeholder="Search products..."
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
-                    className="border border-gray-300 px-4 py-2 rounded-l-md w-full max-w-md focus:outline-none"
+                    className="border border-gray-200 px-4 py-2 rounded-l-md w-full max-w-md focus:outline-none"
                 />
                 <button
                     type="submit"
@@ -83,7 +83,7 @@ const Products = () => {
                 {products.map((product) => (
                     <div
                         key={product._id}
-                        className="rounded-2xl shadow p-4 flex flex-col justify-between h-full border border-gray-300"
+                        className="rounded-2xl shadow p-4 flex flex-col justify-between h-full border border-gray-200"
                     >
                         <div>
                             <img

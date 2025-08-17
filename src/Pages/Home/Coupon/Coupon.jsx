@@ -18,7 +18,7 @@ const Coupon = () => {
 
     return (
         <div className="my-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
                 Exclusive Membership Coupons
             </h2>
             <Carousel

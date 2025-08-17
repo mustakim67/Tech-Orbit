@@ -18,7 +18,7 @@ const TopContributors = () => {
 
     return (
         <div className="py-8 px-4 rounded-lg my-12">
-            <h2 className="text-3xl font-bold text-center mb-6">
+            <h2 className="text-3xl font-bold text-center mb-10">
                 Top Contributors of the Month
             </h2>
 
@@ -26,7 +26,7 @@ const TopContributors = () => {
                 {contributors.map((user, idx) => (
                     <div
                         key={idx}
-                        className="w-64 mx-4 p-5 rounded-xl shadow-md border border-gray-300 flex flex-col items-center justify-center text-center"
+                        className="w-64 mx-4 p-5 rounded-xl shadow-md border border-gray-200 flex flex-col items-center justify-center text-center"
                     >
                         <img
                             src={user.image}

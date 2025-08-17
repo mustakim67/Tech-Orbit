@@ -5,7 +5,8 @@ import { Elements } from '@stripe/react-stripe-js';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import CheckoutForm from '../Payment/CheckOutForm';
-import { MdWorkspacePremium } from "react-icons/md";
+import { MdWorkspacePremium } from 'react-icons/md';
+import Swal from 'sweetalert2';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -27,15 +28,18 @@ const MyProfile = () => {
     const handleSubscribeClick = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
 
-    if (isLoading)
+    if (isLoading) {
         return (
             <div className="text-center py-10 font-medium text-blue-600">
                 <span className="loading loading-spinner loading-xl"></span>
             </div>
         );
+    }
+
+    const isSubscribed = membershipStatus?.isSubscribed;
 
     return (
-        <div className="max-w-2xl mx-auto mt-10 bg-white shadow-xl rounded-2xl p-6">
+        <div className="max-w-2xl mx-auto mt-10 bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6">
             {/* Profile Section */}
             <div className="flex flex-col items-center text-center space-y-4">
                 <img
@@ -43,38 +47,42 @@ const MyProfile = () => {
                     alt="User Profile"
                     className="w-36 h-36 rounded-full border-4 border-blue-500 shadow-md object-cover"
                 />
+
                 <div>
-                    <h3 className="text-2xl font-semibold text-gray-800 flex items-center justify-center gap-2">
+                    <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 flex items-center justify-center gap-2">
                         {user?.displayName}
-                        {membershipStatus?.isSubscribed && (
-                            <span className="inline-flex items-center text-[#DAA520] text-xs font-medium px-1">
-                                <MdWorkspacePremium size={30}/>
-                            </span>
+                        {isSubscribed && (
+                            <MdWorkspacePremium className="text-[#DAA520]" size={28} />
                         )}
                     </h3>
-                    <p className="text-gray-600">{user?.email}</p>
+                    <p className="text-gray-600 dark:text-gray-300">{user?.email}</p>
 
-                    {membershipStatus?.isSubscribed === false ? (
+                    {!isSubscribed && (
                         <button
                             onClick={handleSubscribeClick}
-                            className="btn bg-blue-900 text-white mt-4 w-full max-w-[200px]"
+                            className="mt-4 w-full max-w-[220px] bg-blue-900 hover:bg-blue-800 text-white font-medium py-2 rounded-lg transition"
                         >
                             Subscribe for ৳{membershipStatus?.price || 199}
                         </button>
-                    ) : null}
+                    )}
                 </div>
             </div>
 
             {/* Stripe Payment Modal */}
-            <dialog className={`modal ${showModal ? 'modal-open' : ''}`}>
-                <div className="modal-box max-w-md bg-white relative">
+            <dialog
+                className={`modal ${showModal ? 'modal-open' : ''}`}
+                aria-modal="true"
+                role="dialog"
+            >
+                <div className="modal-box max-w-md bg-white dark:bg-gray-800 relative">
                     <button
                         className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl"
                         onClick={handleCloseModal}
                     >
                         ✕
                     </button>
-                    <h3 className="text-lg font-semibold text-blue-900 mb-4">
+
+                    <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-400 mb-4">
                         Complete Your Membership
                     </h3>
 
@@ -82,12 +90,21 @@ const MyProfile = () => {
                         <CheckoutForm
                             price={membershipStatus?.price || 199}
                             onSuccess={async () => {
-                                await axiosSecure.post('/users/verified', {
-                                    email: user.email,
-                                    verifiedAt: new Date(),
-                                });
-                                handleCloseModal();
-                                refetch();
+                                try {
+                                    await axiosSecure.post('/users/verified', {
+                                        email: user.email,
+                                        verifiedAt: new Date(),
+                                    });
+                                    handleCloseModal();
+                                    refetch();
+                                } catch (err) {
+                                    console.error(err);
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Something went wrong while updating membership!',
+                                    });
+                                }
                             }}
                         />
                     </Elements>

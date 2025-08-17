@@ -47,7 +47,7 @@ const FeaturedProducts = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {featured.map(product => (
-                    <div key={product._id} className="rounded-2xl shadow p-4 flex flex-col justify-between h-full border border-gray-300">
+                    <div key={product._id} className="rounded-2xl shadow p-4 flex flex-col justify-between h-full border border-gray-200">
                         <div>
                             <img src={product.image} alt={product.name} className="h-40 w-full object-cover rounded-xl mb-3" />
 

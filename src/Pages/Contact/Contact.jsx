@@ -134,21 +134,21 @@ const Contact = () => {
                         name="user_name"
                         placeholder="Your Name"
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-transparent focus:outline-none focus:ring-2 transition"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-transparent focus:outline-none focus:ring-2 transition"
                     />
                     <input
                         type="email"
                         name="user_email"
                         placeholder="Your Email"
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-transparent focus:outline-none focus:ring-2  transition"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-transparent focus:outline-none focus:ring-2  transition"
                     />
                     <textarea
                         name="message"
                         placeholder="Your Message"
                         rows="5"
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-transparent focus:outline-none focus:ring-2  transition"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-transparent focus:outline-none focus:ring-2  transition"
                     ></textarea>
 
                     <button

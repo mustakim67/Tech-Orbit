@@ -51,7 +51,7 @@ const UpdateProduct = () => {
 
   const onSubmit = async (data) => {
     try {
-      let imageUrl = existingData.image; 
+      let imageUrl = existingData.image;
 
       if (data.image[0]) {
         const imageFile = data.image[0];
@@ -93,8 +93,8 @@ const UpdateProduct = () => {
   if (!existingData) return <div className="text-center py-10"><span className="loading loading-spinner loading-xl"></span></div>;
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-8">
-      <h2 className="text-2xl font-bold mb-6 text-center text-blue-900">Update Product</h2>
+    <div className="max-w-2xl mx-auto p-8 rounded-lg shadow-lg mt-8">
+      <h2 className="text-2xl font-bold mb-6 text-center">Update Product</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Product Name */}
         <div>
@@ -160,7 +160,7 @@ const UpdateProduct = () => {
           />
         </div>
 
-        <button type="submit" className="btn bg-blue-900 text-white w-full mt-4">Update Product</button>
+        <button type="submit" className="btn bg-blue-800 text-white w-full mt-4">Update Product</button>
       </form>
     </div>
   );

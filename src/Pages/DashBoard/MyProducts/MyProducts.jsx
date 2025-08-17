@@ -10,9 +10,9 @@ const MyProducts = () => {
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
-    const [loading,setLoading]=useState(true);
+    const [loading, setLoading] = useState(true);
 
-    const { data: products = []} = useQuery({
+    const { data: products = [] } = useQuery({
         queryKey: ["myProducts", user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/products/user/${user.email}`);
@@ -73,7 +73,7 @@ const MyProducts = () => {
                     <tbody>
                         {products.length === 0 ? (
                             <tr>
-                                <td colSpan={6} className="text-center py-6 text-gray-500">
+                                <td colSpan={6} className="text-center py-6">
                                     No products found.
                                 </td>
                             </tr>
@@ -98,7 +98,7 @@ const MyProducts = () => {
                                     </td>
                                     <td className="text-center">
                                         <button
-                                            className="text-white bg-blue-900 text-sm px-3 py-1 rounded hover:opacity-90 mr-1"
+                                            className="text-white bg-blue-800 text-sm px-3 py-1 rounded hover:opacity-90 mr-1"
                                             onClick={() =>
                                                 navigate(`/dashboard/update-product/${product._id}`)
                                             }
@@ -110,7 +110,7 @@ const MyProducts = () => {
                                             onClick={() => handleDelete(product._id)}
                                         >
                                             Delete
-                                        </button> 
+                                        </button>
                                     </td>
                                 </tr>
                             ))

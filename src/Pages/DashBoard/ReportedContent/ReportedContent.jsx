@@ -55,7 +55,7 @@ const ReportedContent = () => {
                 <>
                     <h2 className="text-2xl font-bold mb-6 text-blue-900">Reported Contents</h2>
                     <div className="overflow-x-auto rounded-lg">
-                        <table className="table table-zebra w-full shadow border border-gray-300">
+                        <table className="table table-zebra w-full shadow border border-gray-200">
                             <thead className="bg-blue-100 text-blue-800">
                                 <tr>
                                     <th>#</th>

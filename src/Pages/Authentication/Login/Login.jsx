@@ -75,7 +75,7 @@ const Login = () => {
     return (
         <div className=''>
             <div className="md:py-60 flex items-center justify-center px-[5%] py-30 md:px-[10%]">
-                <div className="w-full max-w-3xl shadow-xl rounded-3xl flex flex-col md:flex-row overflow-hidden border border-gray-300">
+                <div className="w-full max-w-3xl shadow-xl rounded-3xl flex flex-col md:flex-row overflow-hidden border border-gray-200">
 
                     {/* Left Side */}
                     <div className="md:w-[40%] flex items-center justify-center p-6 bg-blue-100">
@@ -138,7 +138,7 @@ const Login = () => {
                             <button
                                 type="button"
                                 onClick={handleGoogleSignIn}
-                                className="btn w-full border border-gray-300 bg-gray-100 text-gray-700"
+                                className="btn w-full border border-gray-200 bg-gray-100 text-gray-700"
                             >
                                 <FcGoogle className="text-xl mr-2" />
                                 Continue with Google

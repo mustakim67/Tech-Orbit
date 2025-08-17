@@ -71,7 +71,7 @@ const Register = () => {
     return (
         <div className='min-h-screen'>
             <div className="md:py-60 flex items-center justify-center px-[5%] py-30 md:px-[10%]">
-                <div className="w-full max-w-3xl shadow-xl rounded-3xl flex flex-col md:flex-row overflow-hidden border border-gray-300">
+                <div className="w-full max-w-3xl shadow-xl rounded-3xl flex flex-col md:flex-row overflow-hidden border border-gray-200">
 
                     {/* Left */}
                     <div className="md:w-[40%] bg-blue-100 flex items-center justify-center p-6">
