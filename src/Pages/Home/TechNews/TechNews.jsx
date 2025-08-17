@@ -25,7 +25,7 @@ const news = [
 
 const TechNews = () => {
     return (
-        <section className="my-16 px-[5%] md:px-[1%]">
+        <section className="my-16">
             <h2 className="text-3xl font-bold text-center mb-8">Tech News & Updates</h2>
             <div className="grid md:grid-cols-3 gap-6">
                 {news.map((item, i) => (

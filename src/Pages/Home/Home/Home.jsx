@@ -8,7 +8,7 @@ import TopContributors from '../TopContributors/TopContributors';
 
 const Home = () => {
     return (
-        <div className='md:px-[10%]'>
+        <div className='md:px-[10%] px-4'>
             <Banner></Banner>
             <FeaturedProducts></FeaturedProducts>
             <TrendingProducts></TrendingProducts>

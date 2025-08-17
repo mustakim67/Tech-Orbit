@@ -51,6 +51,29 @@ const Navbar = () => {
                 ? " font-semibold border-b-2 border-blue-600 pb-1"
                 : " hover:text-blue-600"
         }>About</NavLink></li>
+        {
+            user ? (<><li>
+                <NavLink
+                    to={
+                        !roleLoading && role === 'user'
+                            ? 'dashboard/my-profile'
+                            : !roleLoading && role === 'moderator'
+                                ? 'dashboard/product-review-queue'
+                                : !roleLoading && role === 'admin'
+                                    ? 'dashboard/admin-statistics'
+                                    : '/'
+                    }
+                    className={({ isActive }) =>
+                        isActive
+                            ? " font-semibold border-b-2 border-blue-600 pb-1"
+                            : " hover:text-blue-600"
+                    }
+                >
+                    Dashboard
+                </NavLink>
+            </li>
+            </>) : " "
+        }
 
     </>
     return (
@@ -122,22 +145,6 @@ const Navbar = () => {
                             </div>
                             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm -translate-x-20">
                                 <a className="mx-auto">{user?.displayName || "User Name"}</a>
-                                <li>
-                                    <NavLink
-                                        to={
-                                            !roleLoading && role === 'user'
-                                                ? 'dashboard/my-profile'
-                                                : !roleLoading && role === 'moderator'
-                                                    ? 'dashboard/product-review-queue'
-                                                    : !roleLoading && role === 'admin'
-                                                        ? 'dashboard/admin-statistics'
-                                                        : '/'
-                                        }
-                                        className="mx-auto"
-                                    >
-                                        Dashboard
-                                    </NavLink>
-                                </li>
                                 <li>
                                     <button
                                         onClick={handleSignOut}

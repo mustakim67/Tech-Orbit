@@ -33,7 +33,7 @@ const slides = [
 
 const Banner = () => {
     return (
-        <div className="mx-auto mt-20 md:mt-30 mb-10 py-2 px-4 border border-gray-300 rounded-xl">
+        <div className="mt-20 md:mt-30 mb-10 py-2 px-4 border border-gray-300 rounded-xl">
             <Carousel
                 autoPlay
                 infiniteLoop
