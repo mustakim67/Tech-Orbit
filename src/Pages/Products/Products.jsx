@@ -13,16 +13,19 @@ const Products = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const { role } = useUserRole();
+    const [sortOrder, setSortOrder] = useState("newest");
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchText, setSearchText] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
+    const itemsPerPage = 8;
 
     const { data = {}, refetch, isLoading, isFetching } = useQuery({
-        queryKey: ["all-products", searchTerm, currentPage],
+        queryKey: ["all-products", searchTerm, currentPage, sortOrder],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/products/all?search=${searchTerm}&page=${currentPage}&limit=${itemsPerPage}`);
+            const res = await axiosSecure.get(
+                `/products/all?search=${searchTerm}&page=${currentPage}&limit=${itemsPerPage}&sort=${sortOrder}`
+            );
             return res.data;
         },
     });
@@ -62,24 +65,42 @@ const Products = () => {
             </h2>
 
             {/* search bar */}
-            <form onSubmit={handleSearch} className="flex justify-center mb-8">
-                <input
-                    type="text"
-                    placeholder="Search products..."
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                    className="border border-gray-200 px-4 py-2 rounded-l-md w-full max-w-md focus:outline-none"
-                />
-                <button
-                    type="submit"
-                    className="bg-black text-white px-4 py-2 rounded-r-md"
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 w-full">
+                {/* Search Bar */}
+                <form
+                    onSubmit={handleSearch}
+                    className="flex w-full max-w-md"
                 >
-                    Search
-                </button>
-            </form>
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        className="flex-1 border border-gray-200 px-4 py-2 rounded-l-md focus:outline-none"
+                    />
+                    <button
+                        type="submit"
+                        className="bg-black text-white px-4 py-2 rounded-r-md"
+                    >
+                        Search
+                    </button>
+                </form>
+
+                {/* Sort Dropdown */}
+                <select
+                    value={sortOrder}
+                    onChange={(e) => { setSortOrder(e.target.value); setCurrentPage(1); refetch(); }}
+                    className="border border-gray-300 rounded px-3 py-2 w-48 focus:outline-none"
+                >
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </div>
+
+
 
             {/* Product cards add korsi */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {products.map((product) => (
                     <div
                         key={product._id}
