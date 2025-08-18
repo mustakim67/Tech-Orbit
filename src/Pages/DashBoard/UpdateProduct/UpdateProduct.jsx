@@ -90,52 +90,61 @@ const UpdateProduct = () => {
     }
   };
 
-  if (!existingData) return <div className="text-center py-10"><span className="loading loading-spinner loading-xl"></span></div>;
+  if (!existingData)
+    return (
+      <div className="text-center py-10 text-base-content">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
 
   return (
-    <div className="max-w-2xl mx-auto p-8 rounded-lg shadow-lg mt-8">
-      <h2 className="text-2xl font-bold mb-6 text-center">Update Product</h2>
+    <div className="max-w-2xl mx-auto p-8 rounded-lg mt-8">
+      <h2 className="text-2xl font-bold mb-6 text-center text-base-content">Update Product</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Product Name */}
         <div>
-          <label className="font-medium">Product Name</label>
+          <label className="font-medium text-base-content">Product Name</label>
           <input
             {...register('name', { required: true })}
             type="text"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full text-base-content"
           />
           {errors.name && <p className="text-red-500 text-sm">Product name is required.</p>}
         </div>
 
         {/* Image Input */}
         <div>
-          <label className="font-medium">Product Image</label>
+          <label className="font-medium text-base-content">Product Image</label>
           <input
             {...register('image')}
             type="file"
             accept="image/*"
-            className="file-input file-input-bordered w-full"
+            className="file-input file-input-bordered w-full text-base-content"
             onChange={handleImageChange}
           />
           {imagePreview && (
-            <img src={imagePreview} alt="Preview" className="mt-3 w-40 rounded shadow" />
+            <img
+              src={imagePreview}
+              alt="Preview"
+              className="mt-3 w-40 rounded shadow dark:shadow-gray-700"
+            />
           )}
         </div>
 
         {/* Description */}
         <div>
-          <label className="font-medium">Description</label>
+          <label className="font-medium text-base-content">Description</label>
           <textarea
             {...register('description', { required: true })}
             rows="4"
-            className="textarea textarea-bordered w-full"
+            className="textarea textarea-bordered w-full text-base-content"
           />
           {errors.description && <p className="text-red-500 text-sm">Description is required.</p>}
         </div>
 
         {/* Tags */}
         <div>
-          <label className="font-medium">Tags</label>
+          <label className="font-medium text-base-content">Tags</label>
           <ReactTags
             tags={tags}
             handleDelete={(i) => setTags(tags.filter((_, index) => index !== i))}
@@ -143,24 +152,29 @@ const UpdateProduct = () => {
             delimiters={delimiters}
             inputFieldPosition="top"
             classNames={{
-              tagInputField: 'input input-bordered w-full mb-2',
+              tagInputField: 'input input-bordered w-full mb-2 text-base-content',
               tags: 'flex gap-2 flex-col mt-2',
-              tag: 'bg-blue-200 text-blue-800 px-3 py-1 mx-2 rounded-full',
+              tag: 'bg-blue-200 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 mx-2 rounded-full',
             }}
           />
         </div>
 
         {/* External Link */}
         <div>
-          <label className="font-medium">External Link</label>
+          <label className="font-medium text-base-content">External Link</label>
           <input
             {...register('link')}
             type="url"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full text-base-content"
           />
         </div>
 
-        <button type="submit" className="btn bg-blue-800 text-white w-full mt-4">Update Product</button>
+        <button
+          type="submit"
+          className="btn bg-blue-800 dark:bg-blue-700 text-base-content w-full mt-4"
+        >
+          Update Product
+        </button>
       </form>
     </div>
   );

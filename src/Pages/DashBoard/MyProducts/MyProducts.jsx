@@ -23,9 +23,7 @@ const MyProducts = () => {
     });
 
     const deleteMutation = useMutation({
-        mutationFn: async (id) => {
-            return await axiosSecure.delete(`/products/${id}`);
-        },
+        mutationFn: async (id) => axiosSecure.delete(`/products/${id}`),
         onSuccess: () => {
             Swal.fire("Deleted!", "Product has been removed.", "success");
             queryClient.invalidateQueries(["myProducts"]);
@@ -45,27 +43,30 @@ const MyProducts = () => {
             cancelButtonColor: "#3085d6",
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
-            if (result.isConfirmed) {
-                deleteMutation.mutate(id);
-            }
+            if (result.isConfirmed) deleteMutation.mutate(id);
         });
     };
 
     if (loading)
-        return <div className="text-center py-10 text-blue-500"><span className="loading loading-spinner loading-xl"></span></div>;
+        return (
+            <div className="text-center py-10 text-base-content">
+                <span className="loading loading-spinner loading-xl"></span>
+            </div>
+        );
 
     return (
-        <div className="md:p-6">
-            <h2 className="text-2xl font-bold mb-6 ">My Products</h2>
-            <div className="overflow-x-auto shadow rounded-lg">
-                <table className="table table-zebra w-full rounded-lg overflow-hidden">
-                    <thead className="bg-blue-100 text-blue-800">
+        <div className="md:p-6 text-base-content">
+            <h2 className="text-2xl font-bold mb-6 text-base-content">My Products</h2>
+
+            <div className="overflow-x-auto border border-gray-300 dark:border-gray-600 rounded-lg">
+                <table className="table w-full rounded-lg overflow-hidden">
+                    <thead className="border-b border-gray-300 dark:border-gray-600">
                         <tr>
-                            <th>#</th>
-                            <th>Product Name</th>
-                            <th>Votes</th>
-                            <th>Status</th>
-                            <th className="text-center" colSpan={2}>
+                            <th className="text-base-content">#</th>
+                            <th className="text-base-content">Product Name</th>
+                            <th className="text-base-content">Votes</th>
+                            <th className="text-base-content">Status</th>
+                            <th className="text-base-content text-center" colSpan={2}>
                                 Actions
                             </th>
                         </tr>
@@ -73,24 +74,23 @@ const MyProducts = () => {
                     <tbody>
                         {products.length === 0 ? (
                             <tr>
-                                <td colSpan={6} className="text-center py-6">
+                                <td colSpan={6} className="text-center py-6 text-base-content">
                                     No products found.
                                 </td>
                             </tr>
                         ) : (
                             products.map((product, index) => (
                                 <tr key={product._id}>
-                                    <th>{index + 1}</th>
-                                    <td>{product.name}</td>
-                                    <td>{product.votes.length || 0}</td>
+                                    <th className="text-base-content">{index + 1}</th>
+                                    <td className="text-base-content">{product.name}</td>
+                                    <td className="text-base-content">{product.votes.length || 0}</td>
                                     <td>
                                         <span
-                                            className={`text-sm font-semibold px-2 py-1 rounded-full 
-                        ${product.status === "accepted"
-                                                    ? "bg-green-100 text-green-700"
-                                                    : product.status === "rejected"
-                                                        ? "bg-red-100 text-red-700"
-                                                        : "bg-yellow-100 text-yellow-800"
+                                            className={`text-sm font-semibold px-2 py-1 rounded-full ${product.status === "accepted"
+                                                ? "bg-green-100 text-green-700 dark:bg-green-800 dark:text-green-200"
+                                                : product.status === "rejected"
+                                                    ? "bg-red-100 text-red-700 dark:bg-red-800 dark:text-red-200"
+                                                    : "bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-200"
                                                 }`}
                                         >
                                             {product.status || "pending"}
@@ -98,15 +98,13 @@ const MyProducts = () => {
                                     </td>
                                     <td className="text-center">
                                         <button
-                                            className="text-white bg-blue-800 text-sm px-3 py-1 rounded hover:opacity-90 mr-1"
-                                            onClick={() =>
-                                                navigate(`/dashboard/update-product/${product._id}`)
-                                            }
+                                            className="text-base-content bg-blue-800 dark:bg-blue-700 text-sm px-3 py-1 rounded hover:opacity-90 mr-1"
+                                            onClick={() => navigate(`/dashboard/update-product/${product._id}`)}
                                         >
                                             Update
                                         </button>
                                         <button
-                                            className="text-white bg-red-500 text-sm px-3 py-1 rounded hover:opacity-90 ml-1"
+                                            className="text-base-content bg-red-500 dark:bg-red-600 text-sm px-3 py-1 rounded hover:opacity-90 ml-1"
                                             onClick={() => handleDelete(product._id)}
                                         >
                                             Delete

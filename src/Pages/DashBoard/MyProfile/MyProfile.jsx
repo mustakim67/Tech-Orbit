@@ -30,7 +30,7 @@ const MyProfile = () => {
 
     if (isLoading) {
         return (
-            <div className="text-center py-10 font-medium text-blue-600">
+            <div className="text-center py-10 font-medium text-blue-600 dark:text-blue-400">
                 <span className="loading loading-spinner loading-xl"></span>
             </div>
         );
@@ -39,28 +39,28 @@ const MyProfile = () => {
     const isSubscribed = membershipStatus?.isSubscribed;
 
     return (
-        <div className="max-w-2xl mx-auto mt-10 bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6">
+        <div className="max-w-2xl mx-auto mt-10 bg-white/20 shadow-xl rounded-2xl p-6 transition-colors duration-300 text-base-content">
             {/* Profile Section */}
             <div className="flex flex-col items-center text-center space-y-4">
                 <img
                     src={user?.photoURL || 'https://i.ibb.co/LvFTrbJ/user.png'}
                     alt="User Profile"
-                    className="w-36 h-36 rounded-full border-4 border-blue-500 shadow-md object-cover"
+                    className="w-36 h-36 rounded-full border-4 border-blue-500 dark:border-blue-400 shadow-md object-cover transition-colors duration-300"
                 />
 
                 <div>
-                    <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 flex items-center justify-center gap-2">
+                    <h3 className="text-2xl font-semibold  flex items-center justify-center gap-2 transition-colors duration-300">
                         {user?.displayName}
                         {isSubscribed && (
-                            <MdWorkspacePremium className="text-[#DAA520]" size={28} />
+                            <MdWorkspacePremium className="text-yellow-500 dark:text-yellow-400" size={28} />
                         )}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300">{user?.email}</p>
+                    <p className=" transition-colors duration-300">{user?.email}</p>
 
                     {!isSubscribed && (
                         <button
                             onClick={handleSubscribeClick}
-                            className="mt-4 w-full max-w-[220px] bg-blue-900 hover:bg-blue-800 text-white font-medium py-2 rounded-lg transition"
+                            className="mt-4 w-full max-w-[220px] bg-blue-700 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-500 text-white font-medium py-2 rounded-lg transition-colors duration-300"
                         >
                             Subscribe for ৳{membershipStatus?.price || 199}
                         </button>
@@ -74,15 +74,15 @@ const MyProfile = () => {
                 aria-modal="true"
                 role="dialog"
             >
-                <div className="modal-box max-w-md bg-white dark:bg-gray-800 relative">
+                <div className="modal-box max-w-md bg-white dark:bg-gray-800 relative transition-colors duration-300">
                     <button
-                        className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl"
+                        className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl text-gray-700 dark:text-gray-200"
                         onClick={handleCloseModal}
                     >
                         ✕
                     </button>
 
-                    <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-400 mb-4">
+                    <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-400 mb-4 transition-colors duration-300">
                         Complete Your Membership
                     </h3>
 
