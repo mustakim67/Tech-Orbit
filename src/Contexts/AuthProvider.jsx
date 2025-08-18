@@ -6,7 +6,14 @@ import { auth } from '../Firebase/firebase.init';
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-     const googleProvider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+    useEffect(() => {
+        document.querySelector("html").setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -50,7 +57,9 @@ const AuthProvider = ({ children }) => {
         loading,
         signIn,
         GoogleSignIn,
-        logOut
+        logOut,
+        theme,
+        setTheme
     }
     return (
         <AuthContext value={authInfo}>
