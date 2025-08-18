@@ -42,7 +42,7 @@ const AdminStatistics = () => {
     );
     return (
         <div className="md:p-6 dark:bg-gray-900 min-h-screen">
-            <h2 className="text-lg md:text-2xl text-blue-900 dark:text-white mb-8 text-center font-bold">
+            <h2 className="text-lg md:text-2xl text-base-content mb-8 text-center font-bold">
                 Site Overview
             </h2>
 
@@ -52,7 +52,7 @@ const AdminStatistics = () => {
                 <StatCard label="Total Users" value={stats.totalUsers} color="text-indigo-600" bgColor="bg-violet-300" />
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md">
+            <div className="bg-white/10 p-4 rounded-2xl shadow-md">
                 <ResponsiveContainer width="100%" height={400}>
                     <PieChart>
                         <Pie
