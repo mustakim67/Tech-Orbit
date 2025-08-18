@@ -7,7 +7,7 @@ const ReportedContent = () => {
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
 
-    // Get reported products
+    // Fetch reported products
     const { data: reports = [], isLoading } = useQuery({
         queryKey: ["reportedProducts"],
         queryFn: async () => {
@@ -45,18 +45,22 @@ const ReportedContent = () => {
         });
     };
 
-    if (isLoading) return <div className="text-center py-10"><span className="loading loading-spinner loading-xl"></span></div>;
+    if (isLoading) return (
+        <div className="text-center py-10 text-base-content">
+            <span className="loading loading-spinner loading-xl"></span>
+        </div>
+    );
 
     return (
-        <div className="mx-auto md:p-6">
+        <div className="mx-auto md:p-6 text-base-content">
             {reports.length === 0 ? (
-                <p className="text-gray-600 flex justify-center items-center mt-20">No reported products found.</p>
+                <p className="text-center text-gray-500 mt-20">No reported products found.</p>
             ) : (
                 <>
-                    <h2 className="text-2xl font-bold mb-6 text-blue-900">Reported Contents</h2>
-                    <div className="overflow-x-auto rounded-lg">
-                        <table className="table table-zebra w-full shadow border border-gray-200">
-                            <thead className="bg-blue-100 text-blue-800">
+                    <h2 className="text-2xl font-bold mb-6 text-base-content">Reported Contents</h2>
+                    <div className="overflow-x-auto rounded-lg shadow border border-base-200">
+                        <table className="table w-full">
+                            <thead className="bg-base-200 text-base-content">
                                 <tr>
                                     <th>#</th>
                                     <th>Product Name</th>
@@ -68,12 +72,10 @@ const ReportedContent = () => {
                                 {reports.map((report, idx) => (
                                     <tr key={report._id} className="hover:bg-base-100">
                                         <td>{idx + 1}</td>
-                                        <td>{report.
-                                            productName
-                                        }</td>
+                                        <td>{report.productName}</td>
                                         <td>
                                             <Link to={`/product-details/${report.productId}`}>
-                                                <button className="btn btn-sm bg-blue-900 text-white">
+                                                <button className="btn btn-sm bg-blue-900 text-white hover:opacity-90">
                                                     View Details
                                                 </button>
                                             </Link>
@@ -81,7 +83,7 @@ const ReportedContent = () => {
                                         <td>
                                             <button
                                                 onClick={() => handleDelete(report.productId, report._id)}
-                                                className="btn btn-sm bg-red-500 text-white"
+                                                className="btn btn-sm bg-red-500 text-white hover:opacity-90"
                                             >
                                                 Delete
                                             </button>
@@ -92,7 +94,6 @@ const ReportedContent = () => {
                         </table>
                     </div>
                 </>
-
             )}
         </div>
     );

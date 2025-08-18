@@ -18,7 +18,7 @@ const DashBoardLayout = () => {
     const { role, roleLoading } = useUserRole();
 
     return (
-        <div className="drawer lg:drawer-open min-h-screen  text-gray-800">
+        <div className="drawer lg:drawer-open min-h-screen ">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Top Navbar */}
@@ -32,7 +32,7 @@ const DashBoardLayout = () => {
                             </svg>
                         </label>
                     </div>
-                    <div className="flex-1 font-bold text-lg text-blue-700">TECHORBIT Dashboard</div>
+                    <div className="flex-1 font-bold text-lg text-base-content">TECHORBIT Dashboard</div>
                 </div>
 
                 {/* Main Content */}
@@ -45,7 +45,7 @@ const DashBoardLayout = () => {
             {/* Sidebar */}
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <ul className="menu w-72 min-h-full bg-blue-900 text-white px-4 py-6 space-y-2">
+                <ul className="menu w-72 min-h-full bg-gray-500 text-white px-4 py-6 space-y-2">
                     {/* Logo */}
                     <div className="flex items-center gap-3 px-2 mb-6">
                         <img src={logo} alt="TechOrbit" className="w-10 h-10" />

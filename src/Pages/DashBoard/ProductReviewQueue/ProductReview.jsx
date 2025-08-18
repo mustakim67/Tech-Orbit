@@ -8,9 +8,8 @@ import { useState } from "react";
 const ProductReview = () => {
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
-    const [loading,setLoading]=useState(true);
+    const [loading, setLoading] = useState(true);
 
-    // Fetch all products
     const { data: products = [], isLoading } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
@@ -24,7 +23,6 @@ const ProductReview = () => {
         },
     });
 
-    // Mutation for status update
     const statusMutation = useMutation({
         mutationFn: ({ id, status }) => axiosSecure.patch(`/products/status/${id}`, { status }),
         onSuccess: (_, { status }) => {
@@ -39,12 +37,9 @@ const ProductReview = () => {
                 });
             }
         },
-        onError: () => {
-            Swal.fire("Error", "Failed to update status", "error");
-        },
+        onError: () => Swal.fire("Error", "Failed to update status", "error"),
     });
 
-    // Mutation for mark as featured
     const featureMutation = useMutation({
         mutationFn: (id) => axiosSecure.patch(`/products/featured/${id}`, { featured: true }),
         onSuccess: () => {
@@ -58,7 +53,6 @@ const ProductReview = () => {
         },
     });
 
-    // Handle rejection with confirmation
     const handleReject = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -75,15 +69,21 @@ const ProductReview = () => {
             }
         });
     };
+
     if (loading)
-        return <div className="text-center py-10 text-blue-500"><span className="loading loading-spinner loading-xl"></span></div>;
+        return (
+            <div className="text-center py-10 text-base-content">
+                <span className="loading loading-spinner loading-xl"></span>
+            </div>
+        );
+
     return (
-        <div className="md:p-6">
-            <h2 className="text-2xl font-bold mb-6 text-blue-900">Product Review Queue</h2>
+        <div className="md:p-6 text-base-content">
+            <h2 className="text-2xl font-bold mb-6">Product Review Queue</h2>
 
             <div className="overflow-x-auto rounded-lg shadow">
                 <table className="table w-full">
-                    <thead className="bg-blue-100 text-blue-800">
+                    <thead className="bg-base-200 text-base-content">
                         <tr>
                             <th>#</th>
                             <th>Product Name</th>
@@ -94,13 +94,13 @@ const ProductReview = () => {
                     <tbody>
                         {isLoading ? (
                             <tr>
-                                <td colSpan={4} className="text-center py-6 text-gray-500">
+                                <td colSpan={4} className="text-center py-6 text-base-content">
                                     <span className="loading loading-spinner loading-xl"></span>
                                 </td>
                             </tr>
                         ) : products.length === 0 ? (
                             <tr>
-                                <td colSpan={4} className="text-center py-6 text-gray-500">
+                                <td colSpan={4} className="text-center py-6 text-base-content">
                                     No products found.
                                 </td>
                             </tr>
@@ -110,9 +110,11 @@ const ProductReview = () => {
                                     <td>{index + 1}</td>
                                     <td className="py-3 font-medium">{product.name}</td>
                                     <td>
-                                        <span className={`text-sm font-semibold px-2 py-1 rounded-full ${product.status === "accepted" ? "bg-green-100 text-green-700" :
-                                            product.status === "rejected" ? "bg-red-100 text-red-700" :
-                                                "bg-yellow-100 text-yellow-800"
+                                        <span className={`text-sm font-semibold px-2 py-1 rounded-full ${product.status === "accepted"
+                                                ? "bg-green-100 text-green-700"
+                                                : product.status === "rejected"
+                                                    ? "bg-red-100 text-red-700"
+                                                    : "bg-yellow-100 text-yellow-800"
                                             }`}>
                                             {product.status}
                                         </span>
